@@ -26,6 +26,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function guru(){
+        return $this->hasMany(Guru::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

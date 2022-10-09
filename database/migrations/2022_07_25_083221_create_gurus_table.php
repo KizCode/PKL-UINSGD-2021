@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->string('laporlembur');
-            $table->string('jammasuk');
-            $table->string('jamkeluar');
-            $table->string('tanggal');
-            $table->string('jenislembur');
+            $table->unsignedBigInteger('name_id');
+            $table->foreign('name_id')->references('id')->on('users');
+            $table->string('htgl');
+            $table->string('waktu');
+            $table->string('kgtn')->default('Lembur');
+            $table->string('urai');
             $table->timestamps();
         });
     }

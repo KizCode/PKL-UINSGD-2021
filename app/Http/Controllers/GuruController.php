@@ -26,21 +26,19 @@ class GuruController extends Controller
     {
         $validated = $request->validate([
             
-            'laporlembur' => 'required',
-            'jammasuk' => 'required',
-            'jamkeluar' => 'required',
-            'tanggal' => 'required',
-            'jenislembur' => 'required',
+            'htgl' => 'required',
+            'waktu' => 'required',
+            'kgtn' => 'required',
+            'urai' => 'required',
 
         ]);
 
         $guru = new Guru();
         
-        $guru->laporlembur = $request->laporlembur;
-        $guru->jammasuk = $request->jammasuk;
-        $guru->jamkeluar = $request->jamkeluar;
-        $guru->tanggal = $request->tanggal;
-        $guru->jenislembur = $request->jenislembur;
+        $guru->htgl = $request->htgl;
+        $guru->waktu = $request->waktu;
+        $guru->kgtn = $request->kgtn;
+        $guru->urai = $request->urai;
 
         
         $guru->save();
@@ -64,21 +62,19 @@ class GuruController extends Controller
     {
         $validated = $request->validate([
             
-            'laporlembur' => 'required',
-            'jammasuk' => 'required',
-            'jamkeluar' => 'required',
-            'tanggal' => 'required',
-            'jenislembur' => 'required',
+            'htgl' => 'required',
+            'waktu' => 'required',
+            'kgtn' => 'required',
+            'urai' => 'required',
 
         ]);
 
         $guru =  Guru::findOrFail($id);
         
-        $guru->laporlembur = $request->laporlembur;
-        $guru->jammasuk = $request->jammasuk;
-        $guru->jamkeluar = $request->jamkeluar;
-        $guru->tanggal = $request->tanggal;
-        $guru->jenislembur = $request->jenislembur;
+        $guru->htgl = $request->htgl;
+        $guru->waktu = $request->waktu;
+        $guru->kgtn = $request->kgtn;
+        $guru->urai = $request->urai;
 
         
       

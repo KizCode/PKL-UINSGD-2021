@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
-
-    public $fillable = ['laporlembur', 'jammasuk', 'jamkeluar', 'tanggal', 'jenislembur'];
+    
+    protected $primaryKey = "id";
+    public $fillable = ['name_id', 'htgl', 'waktu', 'kgtn' => "Lembur", 'urai'];
     // membuat fitur created_at(kapan data dibuat) & updated_at (kapan data diedit)
     // aktif
     public $timestamps = true;
+    
+    public function user(){
+        return $this->belongsTo(User::class, 'name_id');
+    }
 
     public function siswa()
     {
@@ -37,4 +42,5 @@ class Guru extends Model
             return unlink(public_path('images/guru/' . $this->foto));
         }
     }
+
 }
