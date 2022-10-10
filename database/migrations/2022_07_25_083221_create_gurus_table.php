@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('name_id');
-            $table->foreign('name_id')->references('id')->on('users');
+            $table->unsignedBigInteger('id_user');
+            $table
+                ->foreign('id_user')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('htgl');
             $table->string('waktu');
             $table->string('kgtn')->default('Lembur');

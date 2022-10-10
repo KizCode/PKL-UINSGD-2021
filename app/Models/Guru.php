@@ -9,21 +9,16 @@ class Guru extends Model
 {
     use HasFactory;
     
-    protected $primaryKey = "id";
-    public $fillable = ['name_id', 'htgl', 'waktu', 'kgtn' => "Lembur", 'urai'];
+    protected $primaryKey = "nip";
+    public $fillable = ['id_name', 'htgl', 'waktu', 'kgtn' => "Lembur", 'urai'];
     // membuat fitur created_at(kapan data dibuat) & updated_at (kapan data diedit)
     // aktif
     public $timestamps = true;
+
+
     
     public function user(){
-        return $this->belongsTo(User::class, 'name_id');
-    }
-
-    public function siswa()
-    {
-        // data dari model 'Guru' bisa memiliki banyak data
-        // dari model 'Siswa' melalui id_guru
-        return $this->hasMany(Siswa::class, 'id_guru');
+        return $this->belongsTo(User::class, 'id_name', 'name');
     }
 
     public function image()
