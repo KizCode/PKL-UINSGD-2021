@@ -9,6 +9,7 @@ class Guru extends Model
 {
     use HasFactory;
 
+<<<<<<< Updated upstream
     protected $guarded = ['id'];
     public $fillable = [
         'htgl',
@@ -19,6 +20,17 @@ class Guru extends Model
     // membuat fitur created_at(kapan data dibuat) & updated_at (kapan data diedit)
     // aktif
     public $timestamps = true;
+=======
+    protected $primaryKey = "id";
+    public $fillable = ['name', 'htgl', 'waktu', 'kgtn' => "Lembur", 'urai'];
+    // membuat fitur created_at(kapan data dibuat) & updated_at (kapan data diedit)
+    // aktif
+    public $timestamps = true;
+
+    public function user(){
+        return $this->belongsTo(User::class, 'name');
+    }
+>>>>>>> Stashed changes
 
     public function lembur()
     {

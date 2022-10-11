@@ -18,7 +18,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      *
+<<<<<<< Updated upstream
      *
+=======
+>>>>>>> Stashed changes
      */
     protected $guarded = [
         'id',

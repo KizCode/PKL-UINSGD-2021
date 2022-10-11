@@ -41,6 +41,7 @@
                                         <div class="form-group row">
 
                                             <div class="col-md-12">
+<<<<<<< Updated upstream
                                                 <input id="nip" type="text"
                                                     class="form-control @error('nip') is-invalid @enderror"
                                                     name="nip" required autocomplete="nip" autofocus
@@ -65,6 +66,17 @@
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
+=======
+                                                <input id="name " type="text"
+                                                    class="form-control @error('name') is-invalid @enderror" name="name "
+                                                    value="{{ old('name') }}" required autocomplete="name   " autofocus
+                                                    placeholder="Nama">
+
+                                                @error('name_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+>>>>>>> Stashed changes
                                                 @enderror
                                             </div>
                                         </div>
