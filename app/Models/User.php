@@ -20,18 +20,19 @@ class User extends Authenticatable
      *
      *
      */
-    public $fillable = [
+    protected $guarded = [
+        'id',
+    ];
+    
+    protected $fillable = [
         'nip',
         'nama',
         'level',
-    ];
-
-
-    protected $guarded = [
-        'id',
         'email',
         'password',
     ];
+
+
 
     public function lembur(){
         return $this->belongsTo(Guru::class);
