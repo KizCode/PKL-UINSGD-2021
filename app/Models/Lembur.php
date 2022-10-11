@@ -9,11 +9,8 @@ class Lembur extends Model
 {
     use HasFactory;
 
-    public $fillable = [
-        'name',
-        'ttl',
-        'jk',
-        'jabatan',
+    protected $guarded = [
+        'id',
     ];
 
     public $timestamps = true;

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('lemburs', function (Blueprint $table) {
             $table->id();
-            $table->string('nip');
-            $table->string('name');
-            $table->date('ttl');
-            $table->char('jk');
-            $table->string('jabatan');
+            $table->foreignId('user_id');
+            $table->date('htgl');
+            $table->time('waktu');
+            $table->string('kgtn')->default('Lembur');
+            $table->string('urai');
             $table->timestamps();
         });
     }

@@ -17,17 +17,24 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     * 
+     *
+     *
      */
-    protected $fillable = [
-        'name',
-        'level' => 'User',
+    public $fillable = [
+        'nip',
+        'nama',
+        'level',
+    ];
+
+
+    protected $guarded = [
+        'id',
         'email',
         'password',
     ];
 
-    public function guru(){
-        return $this->hasOne(Guru::class, 'id_name', 'name');
+    public function lembur(){
+        return $this->belongsTo(Guru::class);
     }
 
     /**

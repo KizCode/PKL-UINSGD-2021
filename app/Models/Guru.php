@@ -8,17 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
-    
-    protected $primaryKey = "nip";
-    public $fillable = ['id_name', 'htgl', 'waktu', 'kgtn' => "Lembur", 'urai'];
+
+    protected $guarded = ['id'];
+    public $fillable = [
+        'htgl',
+        'waktu',
+        'kgtn' => "Lembur",
+        'urai',
+    ];
     // membuat fitur created_at(kapan data dibuat) & updated_at (kapan data diedit)
     // aktif
     public $timestamps = true;
 
-
-    
-    public function user(){
-        return $this->belongsTo(User::class, 'id_name', 'name');
+    public function lembur()
+    {
+        return $this->hasMany(User::class);
     }
 
     public function image()
@@ -37,5 +41,4 @@ class Guru extends Model
             return unlink(public_path('images/guru/' . $this->foto));
         }
     }
-
 }

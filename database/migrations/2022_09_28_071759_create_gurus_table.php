@@ -15,17 +15,6 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
-            $table
-                ->foreign('id_user')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->string('htgl');
-            $table->string('waktu');
-            $table->string('kgtn')->default('Lembur');
-            $table->string('urai');
             $table->timestamps();
         });
     }
@@ -37,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gurus');
+        Schema::dropIfExists('dosens');
     }
 };

@@ -13,7 +13,7 @@
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             User Terdaftar</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            
+
                             {{ $users }}
                             <span>USER</span>
                         </div>
@@ -76,6 +76,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>NIP</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -86,6 +87,7 @@
                     @php $no = 1; @endphp @foreach ($user as $data)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td>{{ $data->nip }}</td>
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->level }}</td>

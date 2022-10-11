@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password"
+                                                id="exampleInputPassword" placeholder="Password" 
                                                 @error('password') is-invalid @enderror" name="password" required
                                                 autocomplete="current-password">
                                             @error('password')

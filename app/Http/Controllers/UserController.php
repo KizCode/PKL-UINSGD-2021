@@ -45,13 +45,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:50',
-            'level' => 'string',
+            'nip' => 'required|unique|max:20',
+            'name' => 'required|max:50',
+            'level' => 'nullable',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required|max:6',
         ]);
 
-        
+
 
         $user = new User();
         $user->name = $request->name;
@@ -105,13 +106,14 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:50',
-            'level' => 'string',
+            'nip' => 'required|unique|max:20',
+            'name' => 'required|max:50',
+            'level' => 'nullable',
             'email' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|max:6',
         ]);
-        
-        
+
+
 
         $user->name = $request->name;
         $user->level = $request->level;

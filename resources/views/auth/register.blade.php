@@ -41,15 +41,30 @@
                                         <div class="form-group row">
 
                                             <div class="col-md-12">
+                                                <input id="nip" type="text"
+                                                    class="form-control @error('nip') is-invalid @enderror"
+                                                    name="nip" required autocomplete="nip" autofocus
+                                                    placeholder="NIP">
+
+                                                @error('nip')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="col-md-12">
                                                 <input id="name" type="text"
-                                                    class="form-control @error('name') is-invalid @enderror" name="name"
-                                                    value="{{ old('name') }}" required autocomplete="name" autofocus
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    name="name" required autocomplete="name" autofocus
                                                     placeholder="Nama">
 
                                                 @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -58,13 +73,13 @@
                                             <div class="col-md-12">
                                                 <input id="email" type="email"
                                                     class="form-control  @error('email') is-invalid @enderror"
-                                                    name="email" value="{{ old('email') }}" required
-                                                    autocomplete="email" placeholder="Email Address">
+                                                    name="email" required autocomplete="email"
+                                                    placeholder="Email Address">
 
                                                 @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -77,9 +92,9 @@
                                                     placeholder="Password">
 
                                                 @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -109,7 +124,8 @@
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                                        <a class="small" href="{{ route('login') }}">Already have an account?
+                                            Login!</a>
                                     </div>
                                 </div>
                             </div>

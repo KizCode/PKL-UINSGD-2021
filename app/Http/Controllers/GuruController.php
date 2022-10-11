@@ -25,22 +25,22 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            
-            'htgl' => 'required',
-            'waktu' => 'required',
+
+            'htgl' => 'required|date',
+            'waktu' => 'required|time',
             'kgtn' => 'required',
             'urai' => 'required',
 
         ]);
 
         $guru = new Guru();
-        
+
         $guru->htgl = $request->htgl;
         $guru->waktu = $request->waktu;
         $guru->kgtn = $request->kgtn;
         $guru->urai = $request->urai;
 
-        
+
         $guru->save();
         return redirect()->route('guru.index')
             ->with('success', 'Data berhasil dibuat!');
@@ -61,23 +61,23 @@ class GuruController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            
-            'htgl' => 'required',
-            'waktu' => 'required',
+
+            'htgl' => 'required|date',
+            'waktu' => 'required|time',
             'kgtn' => 'required',
             'urai' => 'required',
 
         ]);
 
         $guru =  Guru::findOrFail($id);
-        
+
         $guru->htgl = $request->htgl;
         $guru->waktu = $request->waktu;
         $guru->kgtn = $request->kgtn;
         $guru->urai = $request->urai;
 
-        
-      
+
+
         $guru->save();
         return redirect()->route('guru.index')
             ->with('success', 'Data berhasil diedit!');
