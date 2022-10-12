@@ -41,7 +41,7 @@
                                         <div class="form-group row">
 
                                             <div class="col-md-12">
-                                                <input id="nip" type="text"
+                                                <input id="nip" type="number"
                                                     class="form-control @error('nip') is-invalid @enderror"
                                                     name="nip" required autocomplete="nip" autofocus
                                                     placeholder="NIP">

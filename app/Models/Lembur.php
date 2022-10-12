@@ -9,9 +9,12 @@ class Lembur extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id',
+    protected $guarded = ['id'];
+    public $fillable = [
+        'htgl',
+        'waktu',
+        'kgtn' => "Lembur",
+        'urai',
     ];
-
     public $timestamps = true;
 }

@@ -18,7 +18,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      *
+     * 
      */
+
     protected $guarded = [
         'id',
     ];
@@ -30,12 +32,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
-
-
-    public function lembur(){
-        return $this->belongsTo(Guru::class);
-    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -8,7 +8,7 @@
       <div class="card border-secondary">
         <div class="card-header mb-3">Data Pegawai</div>
         <div class="card-body">
-          <form action="{{ route('guru.store') }}" method="post">
+          <form action="{{ route('lembur.store') }}" method="post">
             @csrf
             <div class="mb-3">
               <label for="">Hari dan Tanggal</label>
