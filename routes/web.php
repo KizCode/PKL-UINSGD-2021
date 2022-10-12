@@ -25,7 +25,6 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('home', HomeController::class);
 Route::resource('password/reset', UpdatePasswordController::class);
-Route::resource('lembur', LemburController::class);
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
@@ -33,6 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         return view('admin.index');
     });
     
+    Route::resource('lembur', LemburController::class);
     Route::resource('user', UserController::class);
     Route::resource('akun', SiswaController::class);
     Route::resource('jurusan', JurusanController::class);

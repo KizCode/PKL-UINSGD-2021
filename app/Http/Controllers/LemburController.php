@@ -9,13 +9,16 @@ class LemburController extends Controller
 {
     public function index()
     {
+        
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
         $lembur = Lembur::all();
         // dd($lembur);
         // return $lembur;
-        return view('lembur.index', compact('lembur'));
+        $lemburs = Lembur::where('kgtn', 'Lembur')->count();
+        return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
     }
+
 
     public function create()
     {
@@ -26,17 +29,12 @@ class LemburController extends Controller
     {
         $validated = $request->validate([
 
-            'htgl' => 'required|date',
-            'waktu' => 'required|time',
-            'kgtn' => 'required',
+            'kgtn' => 'string',
             'urai' => 'required',
 
         ]);
 
         $lembur = new Lembur();
-
-        $lembur->htgl = $request->htgl;
-        $lembur->waktu = $request->waktu;
         $lembur->kgtn = $request->kgtn;
         $lembur->urai = $request->urai;
 
@@ -60,18 +58,12 @@ class LemburController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-
-            'htgl' => 'required|date',
-            'waktu' => 'required|time',
-            'kgtn' => 'required',
+            'kgtn' => 'string',
             'urai' => 'required',
 
         ]);
 
         $lembur = Lembur::findOrFail($id);
-
-        $lembur->htgl = $request->htgl;
-        $lembur->waktu = $request->waktu;
         $lembur->kgtn = $request->kgtn;
         $lembur->urai = $request->urai;
 

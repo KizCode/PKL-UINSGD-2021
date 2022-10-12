@@ -11,8 +11,6 @@ class Guru extends Model
 
     protected $guarded = ['id'];
     public $fillable = [
-        'htgl',
-        'waktu',
         'kgtn' => "Lembur",
         'urai',
     ];

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,8 +12,6 @@ class Lembur extends Model
 
     protected $guarded = ['id'];
     public $fillable = [
-        'htgl',
-        'waktu',
         'kgtn' => "Lembur",
         'urai',
     ];
