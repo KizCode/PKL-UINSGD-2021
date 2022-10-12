@@ -22,6 +22,18 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label" for="level">Level</label>
+                            <select name="level" id="" class="form-control  @error('level') is-invalid @enderror">
+                                <option value="User" default>User</option>
+                                <option value="Dosen">Dosen</option>
+                            </select>
+                            @error('level')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label" for="email">Email</label>
                             <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email">
                             @error('email')
@@ -34,18 +46,6 @@
                             <label class="form-label" for="name">Password</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
                             @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="level">Level</label>
-                            <select name="level" id="" class="form-control  @error('level') is-invalid @enderror">
-                                <option value="User" default>User</option>
-                                <option value="Dosen">Dosen</option>
-                            </select>
-                            @error('level')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
