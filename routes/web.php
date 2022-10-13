@@ -7,6 +7,7 @@ use App\Http\Controllers\UpdatePasswordController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,17 +27,18 @@ Route::resource('home', HomeController::class);
 Route::resource('password/reset', UpdatePasswordController::class);
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::get('/', function () {
+    Route::get('/admin', function () {
         return view('admin.index');
     });
     Route::resource('lembur', LemburController::class);
     Route::resource('user', UserController::class);
-    Route::resource('akun', SiswaController::class);
-    Route::resource('jurusan', JurusanController::class);
 
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
+    Route::get('/home', function () {
+        return view('welcome');
+    });
     Route::resource('lembur', LemburController::class);
 
 });

@@ -64,7 +64,7 @@
                 <td>
                     <h6 class="m-0 font-weight-bold text-primary">Data Lembur</h6>
                 </td>
-                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary" style="float: right">
+                <a href="{{ url('user/create') }}" class="btn btn-sm btn-primary" style="float: right">
                     Tambah Data
                 </a>
         </div>
@@ -93,9 +93,9 @@
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->level }}</td>
                         <td>
-                            <form action="{{ route('user.destroy', $data->id) }}" method="post">
+                            <form action="{{ url('user/destroy', $data->id) }}" method="post">
                                 @csrf @method('delete')
-                                <a href="{{ route('user.edit', $data->id) }}" class="btn btn-sm btn-outline-success">
+                                <a href="{{ url('user/edit', $data->id) }}" class="btn btn-sm btn-outline-success">
                                     Edit
                                 </a> |
                                 <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Apakah Anda Yakin?')">Delete
