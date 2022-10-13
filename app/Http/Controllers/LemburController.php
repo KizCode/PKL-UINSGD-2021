@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Lembur;
 use Illuminate\Http\Request;
+use PDF;
 
 class LemburController extends Controller
 {
     public function index()
     {
-        
+
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
         $lembur = Lembur::all();
@@ -18,6 +19,7 @@ class LemburController extends Controller
         $lemburs = Lembur::where('kgtn', 'Lembur')->count();
         return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
     }
+
 
 
     public function create()

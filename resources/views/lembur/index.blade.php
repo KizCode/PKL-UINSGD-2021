@@ -50,10 +50,10 @@
                                     <th>Uraian</th>
                                     <th>Action</th>
                                 </thead>
-                                @foreach ($lembur as $data)
-                                    <tbody>
+                                <tbody>
+                                        @foreach ($lembur as $data)
                                         <td> {{ $no++ }}</td>
-                                        <td>{{ Auth::user()->nip }}</td>
+                                        <td>{{ Auth::user()-> nip}}</td>
                                         <td> {{ Auth::user()->name }}</td>
                                         <td>{{ $htgl = $data->created_at->isoFormat('dddd, D MMMM Y') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at)->format('H:i') }}</td>
@@ -68,13 +68,13 @@
                                                 </a> |
                                                 <a href="{{ route('lembur.edit', $data->id) }}"
                                                     class="btn btn-sm btn-outline-warning">Edit
-                                                </a> |  
+                                                </a> |
                                                 <button type="submit" class="btn btn-sm btn-outline-danger"
                                                     onclick="return confirm('Are You Sure?')">Delete</button>
                                             </form>
                                         </td>
+                                        @endforeach
                                     </tbody>
-                                @endforeach
                             </table>
                         </div>
                     </div>

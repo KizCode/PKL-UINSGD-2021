@@ -22,7 +22,8 @@ class UserController extends Controller
     {
         $user = User::all();
         $users = User::where('level','user')->count();
-        return view('user.index', ['user' => $user], compact('users'));
+        $admins = User::where('level','admin')->count();
+        return view('user.index', ['user' => $user], compact('users', 'admins'));
 
     }
 

@@ -11,7 +11,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            User Terdaftar</div>
+                            User</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
 
                             {{ $users }}
@@ -36,8 +36,9 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-7">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Riwayat Laporan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">...
+                            Admin</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{ $admins }} <span>ADMIN</span>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -72,7 +73,7 @@
     </div>
     <div class="card-body">
         <div class="table-container">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>ID</th>
