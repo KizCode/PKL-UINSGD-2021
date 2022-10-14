@@ -35,9 +35,12 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-
                             <div class="col-lg">
                                 <div class="p-5">
+                                    <div class="row justify-content-center">
+                                        <img src="{{ asset('assets/img/PTIPD.jpg') }}" alt="PTIPD" width="120"
+                                            height="auto">
+                                    </div>
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
@@ -57,7 +60,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" 
+                                                id="exampleInputPassword" placeholder="Password"
                                                 @error('password') is-invalid @enderror" name="password" required
                                                 autocomplete="current-password">
                                             @error('password')

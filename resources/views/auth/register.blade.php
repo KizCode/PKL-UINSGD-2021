@@ -105,21 +105,20 @@
                                                     placeholder="Cornfim-Password">
                                             </div>
                                         </div>
-                                        <div class="col-md-4 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Register') }}
-                                            </button>
-                                        </div>
 
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Register with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                        </a>
+                                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4"
+                                            id="tombol">Register
+                                        </button>
+
+                                            <hr>
+                                            <a href="index.html" class="btn btn-google btn-user btn-block">
+                                                <i class="fab fa-google fa-fw"></i> Register with Google
+                                            </a>
+                                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                            </a>
+                                            <hr>
                                     </form>
-                                    <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>

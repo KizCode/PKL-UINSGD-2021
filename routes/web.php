@@ -26,7 +26,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::resource('home', HomeController::class);
 Route::resource('password/reset', UpdatePasswordController::class);
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
+Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
     Route::get('/admin', function () {
         return view('admin.index');
     });
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
 });
 
-Route::group(['middleware' => ['auth', 'role:user']], function () {
+Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::get('/home', function () {
         return view('welcome');
     });
