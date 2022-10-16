@@ -41,7 +41,7 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <td>No </td>
+                                    <th>No</th>
                                     <th>NIP</th>
                                     <th>Nama</th>
                                     <th>Hari dan Tanggal</th>

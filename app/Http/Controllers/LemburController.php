@@ -8,6 +8,11 @@ use PDF;
 
 class LemburController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 
@@ -19,8 +24,6 @@ class LemburController extends Controller
         $lemburs = Lembur::where('kgtn', 'Lembur')->count();
         return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
     }
-
-
 
     public function create()
     {
