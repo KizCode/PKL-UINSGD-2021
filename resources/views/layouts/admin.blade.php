@@ -130,6 +130,7 @@
             <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
 
             <!-- Page level custom scripts -->
+            @include('sweetalert::alert')
         </div>
     </div>
 </body>

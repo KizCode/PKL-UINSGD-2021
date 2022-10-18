@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Lembur;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LemburController extends Controller
 {
@@ -17,10 +18,12 @@ class LemburController extends Controller
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
         $lembur = Lembur::all();
-        
-        // dd($lembur);
-        // return $lembur;
         $lemburs = Lembur::where('kgtn', 'Lembur')->count();
+
+        
+        Alert::success('Success!', 'Gak Tauah');
+        
+
         return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
     }
 
@@ -32,17 +35,17 @@ class LemburController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
+            
             'name' => 'required|max:50',
             'nip' => 'required|min:11',
             'kgtn' => 'string',
             'urai' => 'required',
-
+            
         ]);
         
         $lembur = Lembur::create($request->all());
-        return redirect()->route('lembur.index');
-        alert()->success('SuccessAlert', 'Lorem ipsum dolor sit amet.');
+        return redirect()->route('lembur.index')->withSuccess('Data berhasil ditambahkan!');
+        
 
 
     }
@@ -76,6 +79,7 @@ class LemburController extends Controller
         $lembur->urai = $request->urai;
 
         $lembur->save();
+        
         return redirect()->route('lembur.index')
             ->with('success', 'Data berhasil diedit!');
 

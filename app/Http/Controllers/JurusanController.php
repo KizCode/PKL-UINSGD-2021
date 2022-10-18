@@ -55,7 +55,7 @@ class JurusanController extends Controller
         $jurusan->jurusan = $request->jurusan;
         $jurusan->save();   
 
-        return redirect()->route('jurusan.index')->with('success', 'Data berhasil dibuat!');
+        return redirect()->route('jurusan.index');
     }
 
     /**

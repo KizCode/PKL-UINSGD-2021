@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @include('layouts._flash')
+                @include('sweetalert::alert')
                 <div class="card border-secondary">
                     <div class="card-header mb-3">Data Edit</div>
 

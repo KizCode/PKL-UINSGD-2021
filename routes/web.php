@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::get('/home', function () {
         return view('welcome');
     });
-    Alert::alert('Title', 'Message', 'success');
+    Alert::alert('Welcome', 'Admin UIN PTIPD', 'success');
     Route::resource('lembur', LemburController::class);
 
 });
