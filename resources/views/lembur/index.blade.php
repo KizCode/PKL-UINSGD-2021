@@ -31,15 +31,19 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @include('layouts._flash')
-                <div class="card border-secondary">
-                    <div class="card-header mb-3">Laporan Lembur
-                        <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add Data
-                        </a>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header mb-3 m-0 font-weight-bold text-primary">Laporan Lembur
+                        @if (auth()->user()->level == 'User')
+                            <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
+                                Data
+                            </a>
+                        @endif
                     </div>
                     @php $no = 1; @endphp
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered " width="100%" cellspacing="0" >
                                 <thead>
                                     <th>No</th>
                                     <th>NIP</th>
@@ -51,35 +55,40 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
-                                        @foreach ($lembur as $data)
+                                    @foreach ($lembur as $data)
                                         <td> {{ $no++ }}</td>
-                                        <td>{{ Auth::user()-> nip}}</td>
+                                        <td>{{ Auth::user()->nip }}</td>
                                         <td> {{ Auth::user()->name }}</td>
                                         <td>{{ $htgl = $data->created_at->isoFormat('dddd, D MMMM Y') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($data->created_at)->format('H:i') }}</td>
+                                        <td>{{ $waktu = \Carbon\Carbon::parse($data->created_at)->format('H:i') }}</td>
                                         <td>{{ $data->kgtn }}</td>
-                                        <td>{{ $data->urai }}</td>
+                                        <td>{{ $uraian = substr($data->urai,0,8) }}</td>
                                         <td>
                                             <form action="{{ route('lembur.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="#" class="btn btn-sm btn-outline-info">
-                                                    Print
-                                                </a> |
+                                                <button href="#" class="btn btn-primary btn-icon-split">
+                                                    <span class="text">Print</span>
+                                                </button> |
+                                                @if (auth()->user()->level == 'User')
                                                 <a href="{{ route('lembur.edit', $data->id) }}"
-                                                    class="btn btn-sm btn-outline-warning">Edit
+                                                    class="btn btn-warning btn-icon-split">
+                                                    <span class="text">Print</span>
                                                 </a> |
-                                                <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                    onclick="return confirm('Are You Sure?')">Delete</button>
+                                                @endif
+                                                <button type="submit" class="btn btn-danger btn-icon-split"
+                                                    onclick="return confirm('Are You Sure?')">
+                                                    <span class="text">Delete</span>
+                                                </button>
                                             </form>
                                         </td>
-                                        @endforeach
-                                    </tbody>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
