@@ -1,5 +1,5 @@
 <?php
-
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\LemburController;
@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::get('/home', function () {
         return view('welcome');
     });
+    Alert::alert('Title', 'Message', 'success');
     Route::resource('lembur', LemburController::class);
 
 });

@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('lemburs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
+            $table->string('name');
+            $table->string('nip');
             $table->string('kgtn')->default('Lembur');
             $table->string('urai');
             $table->timestamps();

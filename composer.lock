@@ -1666,7 +1666,6 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.5.2",
             "version": "3.6.0",
             "source": {
                 "type": "git",

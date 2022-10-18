@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Lembur;
 use Illuminate\Http\Request;
-use PDF;
 
 class LemburController extends Controller
 {
@@ -19,6 +17,7 @@ class LemburController extends Controller
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
         $lembur = Lembur::all();
+        
         // dd($lembur);
         // return $lembur;
         $lemburs = Lembur::where('kgtn', 'Lembur')->count();
@@ -32,20 +31,20 @@ class LemburController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
 
+            'name' => 'required|max:50',
+            'nip' => 'required|min:11',
             'kgtn' => 'string',
             'urai' => 'required',
 
         ]);
+        
+        $lembur = Lembur::create($request->all());
+        return redirect()->route('lembur.index');
+        alert()->success('SuccessAlert', 'Lorem ipsum dolor sit amet.');
 
-        $lembur = new Lembur();
-        $lembur->kgtn = $request->kgtn;
-        $lembur->urai = $request->urai;
 
-        $lembur->save();
-        return redirect()->route('lembur.index')
-            ->with('success', 'Data berhasil dibuat!');
     }
 
     public function show($id)
@@ -62,13 +61,17 @@ class LemburController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
+            'name' => 'required|max:50',
+            'nip' => 'required|min:11',
             'kgtn' => 'string',
             'urai' => 'required',
 
         ]);
 
         $lembur = Lembur::findOrFail($id);
+        $lembur->name = $request->name;
+        $lembur->nip = $request->nip;
         $lembur->kgtn = $request->kgtn;
         $lembur->urai = $request->urai;
 
@@ -83,9 +86,6 @@ class LemburController extends Controller
         //
         $lembur = Lembur::findOrFail($id);
         $lembur->delete();
-        return redirect()->route('lembur.index')->with(
-            'succes',
-            'Data berhasil dihapus!'
-        );
+        return redirect()->route('lembur.index')->with('succes','Data berhasil dihapus!');
     }
 }

@@ -12,6 +12,8 @@ class Lembur extends Model
 
     protected $guarded = ['id'];
     public $fillable = [
+        'name',
+        'nip',
         'kgtn' => "Lembur",
         'urai',
     ];

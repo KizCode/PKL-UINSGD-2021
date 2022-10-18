@@ -56,7 +56,6 @@
 
 
                     <!-- Area Chart -->
-
                 </div>
                 <!-- End of Content Wrapper -->
 
@@ -105,6 +104,7 @@
                     </div>
                 </div>
             </footer>
+
             <!-- End of Footer -->
 
             <!-- Bootstrap core JavaScript-->
@@ -114,9 +114,7 @@
 
             <!-- Core plugin JavaScript-->
             <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
-            <script src="{{ asset('assets/package/dist/sweetalert2.min.js') }}"></script>
             {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-            <script src="{{ asset('js-sweet/sweetalert2.all.min.js') }}"></script>
             <script>
                 $(document).ready(function() {
                     $('#dataTable').DataTable();
@@ -132,9 +130,8 @@
             <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
 
             <!-- Page level custom scripts -->
-            <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
-            <script src="{{ asset('sbadmin2/js/demo/chart-pie-demo.js') }}"></script>
-
+        </div>
+    </div>
 </body>
 
 </html>
