@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ]));
 
         $user = User::create(array_merge([
-            'nip' => '3',
+            'nip' => '12345678901',
             'name' => 'user',
             'level' => 'User',
             'email' => 'useruin@role.test',

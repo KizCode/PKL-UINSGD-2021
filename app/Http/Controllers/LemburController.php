@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Lembur;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,11 +21,9 @@ class LemburController extends Controller
         $lembur = Lembur::all();
         $lemburs = Lembur::where('kgtn', 'Lembur')->count();
 
-        
-        Alert::success('Success!', 'Gak Tauah');
-        
 
         return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
+
     }
 
     public function create()
@@ -35,18 +34,24 @@ class LemburController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
+
             'name' => 'required|max:50',
             'nip' => 'required|min:11',
             'kgtn' => 'string',
             'urai' => 'required',
-            
-        ]);
-        
-        $lembur = Lembur::create($request->all());
-        return redirect()->route('lembur.index')->withSuccess('Data berhasil ditambahkan!');
-        
 
+        ]);
+
+        $lembur = new Lembur();
+        $lembur->nip = $request->nip;
+        $lembur->name = $request->name;
+        $lembur->kgtn = $request->kgtn;
+        $lembur->urai = $request->urai;
+
+        $lembur->save();
+
+        return redirect()->route('lembur.index')
+            ->with('success', 'Data berhasil dihapus!');
 
     }
 
@@ -79,7 +84,7 @@ class LemburController extends Controller
         $lembur->urai = $request->urai;
 
         $lembur->save();
-        
+
         return redirect()->route('lembur.index')
             ->with('success', 'Data berhasil diedit!');
 
@@ -90,6 +95,7 @@ class LemburController extends Controller
         //
         $lembur = Lembur::findOrFail($id);
         $lembur->delete();
-        return redirect()->route('lembur.index')->with('succes','Data berhasil dihapus!');
+        return redirect()->route('lembur.index')
+            ->with('success', 'Data berhasil dihapus!');
     }
 }

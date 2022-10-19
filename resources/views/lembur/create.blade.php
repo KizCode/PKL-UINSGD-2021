@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @include('sweetalert::alert')
+                @include('layouts._flash')
                 <div class="card border-secondary">
                     <div class="card-header mb-3">Buat Laporan</div>
                     <div class="card-body">
@@ -54,7 +54,7 @@
 
                             <div class="mb-3">
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="submit">Save</button>
+                                    <button class="btn btn-primary" type="submit" onclick="alert()->success('Title','Lorem Lorem Lorem');">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -62,6 +62,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 @endsection

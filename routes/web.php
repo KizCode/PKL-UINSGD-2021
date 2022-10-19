@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
     Route::get('/admin', function () {
         return view('admin.index');
     });
+    Alert::alert('Welcome', 'Admin UIN PTIPD', 'success');
     Route::resource('lembur', LemburController::class);
     Route::resource('user', UserController::class);
 
@@ -39,7 +41,6 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::get('/home', function () {
         return view('welcome');
     });
-    Alert::alert('Welcome', 'Admin UIN PTIPD', 'success');
     Route::resource('lembur', LemburController::class);
 
 });

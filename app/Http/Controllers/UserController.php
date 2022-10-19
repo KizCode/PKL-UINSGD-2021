@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 use PhpOption\Option;
 
@@ -48,7 +49,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nip' => 'required|max:20',
             'name' => 'required|max:50',
-            'level' => 'null',
+            'level' => 'string',
             'email' => 'required',
             'password' => 'required',
         ]);
@@ -63,10 +64,8 @@ class UserController extends Controller
         $user->password = $request->password;
 
         $user->save();
-        return redirect()->route('user.index')->with(
-            'succes',
-            'Data berhasil dibuat!'
-        );
+        return redirect()
+            ->route('user.index')->with('toast_success', 'Data berhasil dibuat!');
 
     }
 
@@ -110,7 +109,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nip' => 'required|max:20',
             'name' => 'required|max:50',
-            'level' => 'null',
+            'level' => 'string',
             'email' => 'required',
             'password' => 'required',
         ]);
@@ -123,11 +122,8 @@ class UserController extends Controller
         $user->password = $request->password;
 
         $user->save();
-        return redirect()->route('user.index')->with(
-            'succes',
-            'Data berhasil dibuat!'
-        );
-
+        return redirect()
+            ->route('user.index')->with('toast_success', 'Data berhasil dibuat!');
     }
 
     /**
@@ -140,7 +136,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()
+            ->route('user.index')->with('success', 'Data berhasil dihapus!');
 
     }
 }

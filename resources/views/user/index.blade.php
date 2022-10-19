@@ -59,7 +59,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            @include('layouts/_flash')
+            @include('sweetalert::alert')
             <table>
                 <td>
                     <h6 class="m-0 font-weight-bold text-primary">Data Lembur</h6>
@@ -93,9 +93,9 @@
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->level }}</td>
                         <td>
-                            <form action="{{ url('user/destroy', $data->id) }}" method="post">
+                            <form action="{{ route('user.destroy', $data->id) }}" method="post">
                                 @csrf @method('delete')
-                                <a href="{{ url('user/edit', $data->id) }}" class="btn btn-sm btn-outline-success">
+                                <a href="{{ route('user.edit', $data->id) }}" class="btn btn-sm btn-outline-success">
                                     Edit
                                 </a> |
                                 <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Apakah Anda Yakin?')">Delete

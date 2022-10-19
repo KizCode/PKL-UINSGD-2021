@@ -22,6 +22,15 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label" for="nip">NIP</label>
+                            <input type="text" class="form-control  @error('nip') is-invalid @enderror" name="nip">
+                            @error('nip')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label" for="level">Level</label>
                             <select name="level" id="" class="form-control  @error('level') is-invalid @enderror">
                                 <option value="User" default>User</option>

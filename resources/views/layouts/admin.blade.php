@@ -19,9 +19,6 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-
-
 </head>
 
 <body id="page-top">
@@ -49,9 +46,9 @@
                     <!-- Page Heading -->
 
 
+
                     <!-- Content Row -->
                     @yield('content')
-
                     <!-- Content Row -->
 
 
@@ -126,11 +123,12 @@
             <!-- Custom scripts for all pages-->
             <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
 
+
             <!-- Page level plugins -->
             <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
 
             <!-- Page level custom scripts -->
-            @include('sweetalert::alert')
+
         </div>
     </div>
 </body>
