@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
     Route::get('/admin', function () {
         return view('admin.index');
     });
-    Alert::alert('Welcome', 'Admin UIN PTIPD', 'success');
+    Alert::alert('Welcome', 'UIN PTIPD', 'success');
     Route::resource('lembur', LemburController::class);
     Route::resource('user', UserController::class);
 

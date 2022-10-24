@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<div id="alert" data-flash="{{ $this->session->flashdata('success') }}"></div>
     <div>
         <div class="col-xl-container col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
@@ -33,7 +32,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @if(session('success_message'))
+                @if (session('success_message'))
                     <div class="alert alert-success">
                         {{ session('success_message') }}
                     </div>
@@ -74,7 +73,7 @@
                                             <form action="{{ route('lembur.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="#" class="btn btn-primary btn-icon-split">
+                                                <a href="{{ route('lembur.show', $data->id) }}" class="btn btn-primary btn-icon-split">
                                                     <span class="text">Print</span>
                                                 </a> |
                                                 @if (auth()->user()->level == 'User')

@@ -18,6 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">
 </head>
@@ -30,7 +31,8 @@
         <!-- Sidebar -->
         @include('layouts.includes.sidebar')
         <!-- End of Sidebar -->
-
+        @include('layouts._flash')
+        @include('sweetalert::alert')
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -106,9 +108,14 @@
             <!-- End of Footer -->
 
             <!-- Bootstrap core JavaScript-->
-            <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
             <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
             <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+            <!-- Page level plugins -->
+            
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+
             <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
             <!-- Core plugin JavaScript-->
             <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
@@ -118,24 +125,18 @@
                     $('#dataTable').DataTable();
                 });
             </script>
-            <script>
-                $(document).getElementById('.simpan').addEventListener('click', function() {
-                    $(Swal).fire({
-                        title: 'Error!',
-                        text: 'Do you want to continue',
-                        icon: 'error',
-                        confirmButtonText: 'Cool'
-                    });
-                })
-            </script>
 
             <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
             <!-- Custom scripts for all pages-->
             <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
 
-
             <!-- Page level plugins -->
+            <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
+
+            <!-- Page level custom scripts -->
+            <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
+            <script src="{{ asset('sbadmin2/js/demo/chart-pie-demo.js') }}"></script>
             <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
 
             <!-- Page level custom scripts -->

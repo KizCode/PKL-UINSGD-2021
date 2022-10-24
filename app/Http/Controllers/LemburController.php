@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Lembur;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class LemburController extends Controller
 {
@@ -20,7 +19,6 @@ class LemburController extends Controller
         // yang dibuat dari method 'siswa' di model 'Wali'
         $lembur = Lembur::all();
         $lemburs = Lembur::where('kgtn', 'Lembur')->count();
-
 
         return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
 
@@ -52,7 +50,6 @@ class LemburController extends Controller
 
         return redirect()->route('lembur.index')
             ->with('success', 'Data berhasil dihapus!');
-
     }
 
     public function show($id)
