@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">
 </head>
 
 <body id="page-top">
@@ -108,7 +109,7 @@
             <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
             <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
             <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+            <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
             <!-- Core plugin JavaScript-->
             <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
             {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -116,6 +117,16 @@
                 $(document).ready(function() {
                     $('#dataTable').DataTable();
                 });
+            </script>
+            <script>
+                $(document).getElementById('.simpan').addEventListener('click', function() {
+                    $(Swal).fire({
+                        title: 'Error!',
+                        text: 'Do you want to continue',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                })
             </script>
 
             <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -128,6 +139,8 @@
             <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
 
             <!-- Page level custom scripts -->
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
         </div>
     </div>

@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -54,7 +55,9 @@
 
                             <div class="mb-3">
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="submit" onclick="alert()->success('Title','Lorem Lorem Lorem');">Save</button>
+                                    <button class="btn btn-primary" type="submit" id="simpan">
+                                        Save
+                                    </button>
                                 </div>
                             </div>
                         </form>

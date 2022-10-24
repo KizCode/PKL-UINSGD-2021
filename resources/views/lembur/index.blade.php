@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div id="alert" data-flash="{{ $this->session->flashdata('success') }}"></div>
     <div>
         <div class="col-xl-container col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
