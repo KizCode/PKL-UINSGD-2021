@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
 
 
         $admin = User::create(array_merge([
-            'nip' => '2 ',
+            'nip' => '2',
             'name' => 'admin',
             'level' => 'Admin',
             'email' => 'adminuin@role.test',

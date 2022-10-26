@@ -9,7 +9,7 @@
                 <div class="card border-secondary">
                     <div class="card-header mb-3">Buat Laporan</div>
                     <div class="card-body">
-                        <form action="{{ route('lembur.store') }}" method="post">
+                        <form action="{{ route('goals.store') }}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="">Nama</label>
@@ -22,9 +22,9 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="">NIP</label>
+                                <label for="">Gol</label>
                                 <input type="text" name="nip" value="{{ Auth::user()->nip }}"
-                                    class="form-control @error('nip') is-invalid @enderror" readonly></input>
+                                    class="form-control @error('nip') is-invalid @enderror"></input>
                                 @error('nip')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -32,7 +32,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="">Kegiatan</label>
+                                <label for="">Jabatan</label>
                                 <input type="text" name="kgtn" value="Lembur"
                                     class="form-control @error('kgtn') is-invalid @enderror"></input>
                                 @error('kgtn')
@@ -43,7 +43,7 @@
                             </div>
                             <div class="mb-3">
                                 <div>
-                                    <label for="urai">Uraian</label>
+                                    <label for="urai">Jenis Pekerjaan</label>
                                 </div>
                                 <textarea class="form-control" name="urai" id="" cols="100" rows="auto" required></textarea>
                                 @error('urai')

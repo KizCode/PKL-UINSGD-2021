@@ -44,6 +44,6 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
         return view('welcome');
     });
     Route::resource('lembur', LemburController::class);
-    Route::resource('gol', GolController::class);
+    Route::resource('goals', GolController::class);
 
 });

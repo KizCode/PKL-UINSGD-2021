@@ -79,6 +79,7 @@
                         <th>ID</th>
                         <th>NIP</th>
                         <th>Nama</th>
+                        <th>Jabatan</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th>Aksi</th>
@@ -90,6 +91,7 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $data->nip }}</td>
                         <td>{{ $data->name }}</td>
+                        <td>{{ $data->jabatan }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->level }}</td>
                         <td>

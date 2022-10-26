@@ -41,7 +41,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header mb-3 m-0 font-weight-bold text-primary">Laporan Lembur
                         @if (auth()->user()->level == 'User')
-                            <a href="{{ route('golas.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
+                            <a href="{{ route('goals.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
                                 Data
                             </a>
                         @endif
