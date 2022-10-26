@@ -28,6 +28,11 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px">
+            <img class="animation__shake" src="/docs/3.1//assets/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+                width="60" style="display: none;">
+        </div>
+
         <!-- Sidebar -->
         @include('layouts.includes.sidebar')
         <!-- End of Sidebar -->
@@ -84,18 +89,18 @@
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <a class="btn btn-primary" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"
+                                document.getElementById('logout-form').submit();"
                                 role="button">
                                 <i>Logout</i>
                             </a>
                             <form action="{{ route('logout') }}" id="logout-form" method="post">
                                 @csrf
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -104,7 +109,6 @@
                     </div>
                 </div>
             </footer>
-
             <!-- End of Footer -->
 
             <!-- Bootstrap core JavaScript-->
@@ -112,13 +116,13 @@
             <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
             <!-- Page level plugins -->
-            
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
-
             <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
+
             <!-- Core plugin JavaScript-->
             <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+            
             {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
             <script>
                 $(document).ready(function() {
@@ -141,7 +145,7 @@
 
             <!-- Page level custom scripts -->
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+            <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 
         </div>
     </div>

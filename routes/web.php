@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\golController;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
@@ -28,9 +30,9 @@ Route::resource('home', HomeController::class);
 Route::resource('password/reset', UpdatePasswordController::class);
 
 Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    });
+    // Route::get('/admin', function () {
+    //     return view('admin.index');
+    // });
     Alert::alert('Welcome', 'UIN PTIPD', 'success');
     Route::resource('lembur', LemburController::class);
     Route::resource('user', UserController::class);
@@ -42,5 +44,6 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
         return view('welcome');
     });
     Route::resource('lembur', LemburController::class);
+    Route::resource('gol', GolController::class);
 
 });
