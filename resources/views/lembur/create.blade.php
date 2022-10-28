@@ -42,6 +42,26 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label for="">Dari Jam</label>
+                                <input type="time" name="dari" value="16:00"
+                                    class="form-control @error('kgtn') is-invalid @enderror"></input>
+                                @error('kgtn')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Sampai Jam</label>
+                                <input type="time" name="sampai"
+                                    class="form-control @error('kgtn') is-invalid @enderror"></input>
+                                @error('kgtn')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <div>
                                     <label for="urai">Uraian</label>
                                 </div>

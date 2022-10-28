@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nip');
+            $table->time('dari')->default('16:00');
+            $table->time('sampai');
             $table->string('kgtn')->default('Lembur');
             $table->string('urai');
             $table->timestamps();

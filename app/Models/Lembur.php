@@ -14,6 +14,9 @@ class Lembur extends Model
     public $fillable = [
         'name',
         'nip',
+        'dari',
+        'sampai',
+        'waktu',    
         'kgtn' => "Lembur",
         'urai',
     ];

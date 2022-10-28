@@ -41,8 +41,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-header mb-3 m-0 font-weight-bold text-primary">Laporan Lembur
                         @if (auth()->user()->level == 'User')
-                            <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
-                                Data
+                            <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary"
+                                style="float: right;">Tambah Data
                             </a>
                         @endif
                     </div>
@@ -66,14 +66,15 @@
                                         <td>{{ $data->nip }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $htgl = $data->created_at->isoFormat('dddd, D MMMM Y') }}</td>
-                                        <td>{{ $waktu = \Carbon\Carbon::parse($data->created_at)->format('H:i') }}</td>
+                                        <td>{{ {{ $waktu = date_diff($data->sampai - $data->dari)}} }}</td>
                                         <td>{{ $data->kgtn }}</td>
                                         <td>{{ $uraian = substr($data->urai, 0, 15) }}</td>
                                         <td>
                                             <form action="{{ route('lembur.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route('lembur.show', $data->id) }}" class="btn btn-primary btn-icon-split">
+                                                <a href="{{ route   ('lembur.show', $data->id) }}"
+                                                    class="btn btn-primary btn-icon-split">
                                                     <span class="text">Print</span>
                                                 </a> |
                                                 @if (auth()->user()->level == 'User')

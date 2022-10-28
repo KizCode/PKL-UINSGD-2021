@@ -33,9 +33,11 @@ class LemburController extends Controller
     {
         $request->validate([
 
-            'name' => 'required|max:50',
             'nip' => 'required|min:11',
-            'kgtn' => 'string',
+            'name' => 'required|max:50',
+            'dari' => 'required|time',
+            'sampai' => 'required|time',
+            'kgtn',
             'urai' => 'required',
 
         ]);
@@ -43,6 +45,8 @@ class LemburController extends Controller
         $lembur = new Lembur();
         $lembur->nip = $request->nip;
         $lembur->name = $request->name;
+        $lembur->dari = $request->dari;
+        $lembur->sampai = $request->sampai;
         $lembur->kgtn = $request->kgtn;
         $lembur->urai = $request->urai;
 
@@ -69,7 +73,9 @@ class LemburController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'nip' => 'required|min:11',
-            'kgtn' => 'string',
+            'dari' => 'required|time',
+            'sampai' => 'required|time',
+            'kgtn',
             'urai' => 'required',
 
         ]);
@@ -77,6 +83,8 @@ class LemburController extends Controller
         $lembur = Lembur::findOrFail($id);
         $lembur->name = $request->name;
         $lembur->nip = $request->nip;
+        $lembur->dari = $request->dari;
+        $lembur->sampai = $request->sampai;
         $lembur->kgtn = $request->kgtn;
         $lembur->urai = $request->urai;
 

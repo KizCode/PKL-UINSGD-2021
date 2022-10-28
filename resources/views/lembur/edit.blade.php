@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 @include('layouts._flash')
                 <div class="card border-secondary">
-                    <div class="card-header mb-3">Data Edit</div>
+                    <div class="card-header mb-3">EdiT Laporan</div>
 
                     <div class="card-body">
                         <form action="{{ route('lembur.update', $lembur->id) }}" method="post">
@@ -47,7 +47,7 @@
                                 <div>
                                     <label for="">Uraian Lembur</label>
                                 </div>
-                                <textarea class="form-control" name="urai" id="" cols="100" rows="auto" required value={{ $lembur->urai }}></textarea>
+                                <textarea class="form-control" name="urai" id="" cols="100" rows="auto" required>{{ $lembur->urai }}</textarea>
                                 </input>
                                 @error('urai')
                                     <span class="invalid-feedback" role="alert">
