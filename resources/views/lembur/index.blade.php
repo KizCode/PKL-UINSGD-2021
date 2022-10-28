@@ -32,9 +32,9 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                @if (session('success_message'))
+                @if (session('success'))
                     <div class="alert alert-success">
-                        {{ session('success_message') }}
+                        {{ session('success') }}
                     </div>
                 @endif
                 @include('sweetalert::alert')
@@ -65,15 +65,27 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nip }}</td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $htgl = $data->created_at->isoFormat('dddd, D MMMM Y') }}</td>
-                                        <td>{{ {{ $waktu = date_diff($data->sampai - $data->dari)}} }}</td>
+                                        <td>{{ $data->htgl = $data->created_at->isoFormat('dddd, D MMMM Y') }}</td>
+                                        @php
+                                            $awal = date_create($data->dari);
+                                            $akhir = date_create($data->sampai);
+                                            $diff = date_diff($awal, $akhir);
+                                        @endphp
+                                        <td>
+                                            @if ($diff->h > 00)
+                                                {{ $diff->h }} Jam
+                                            @endif
+                                            @if ($diff->i > 00)
+                                                {{ $diff->i }} Menit
+                                            @endif
+                                        </td>
                                         <td>{{ $data->kgtn }}</td>
                                         <td>{{ $uraian = substr($data->urai, 0, 15) }}</td>
                                         <td>
                                             <form action="{{ route('lembur.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route   ('lembur.show', $data->id) }}"
+                                                <a href="{{ route('lembur.show', $data->id) }}"
                                                     class="btn btn-primary btn-icon-split">
                                                     <span class="text">Print</span>
                                                 </a> |
@@ -84,7 +96,7 @@
                                                     </a> |
                                                 @endif
                                                 <button type="submit" class="btn btn-danger btn-icon-split"
-                                                    onclick="return confirm('Are You Sure?')">
+                                                    onclick="return confirm('Apakah Kamu Yakin?')">
                                                     <span class="text">Delete</span>
                                                 </button>
                                             </form>

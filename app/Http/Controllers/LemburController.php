@@ -35,8 +35,8 @@ class LemburController extends Controller
 
             'nip' => 'required|min:11',
             'name' => 'required|max:50',
-            'dari' => 'required|time',
-            'sampai' => 'required|time',
+            'dari' => 'required',
+            'sampai' => 'required',
             'kgtn',
             'urai' => 'required',
 
@@ -73,8 +73,8 @@ class LemburController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'nip' => 'required|min:11',
-            'dari' => 'required|time',
-            'sampai' => 'required|time',
+            'dari' => 'required',
+            'sampai' => 'required',
             'kgtn',
             'urai' => 'required',
 

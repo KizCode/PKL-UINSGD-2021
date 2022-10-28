@@ -53,7 +53,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Sampai Jam</label>
-                                <input type="time" name="sampai"
+                                <input type="time" name="sampai" value="16:15"
                                     class="form-control @error('kgtn') is-invalid @enderror"></input>
                                 @error('kgtn')
                                     <span class="invalid-feedback" role="alert">
