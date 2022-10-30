@@ -35,7 +35,7 @@
                             <div class="mb-3">
                                 <label for="">Kegiatan</label>
                                 <input type="text" name="kgtn"
-                                    class="form-control @error('kgtn') is-invalid @enderror" value="Lembur">
+                                    class="form-control @error('kgtn') is-invalid @enderror" value="Lembur" required>
                                 </input>
                                 @error('kgtn')
                                     <span class="invalid-feedback" role="alert">
@@ -65,10 +65,9 @@
                             </div>
                             <div class="mb-3">
                                 <div>
-                                    <label for="">Uraian Lembur</label>
+                                    <label for="">Uraian Lembur Maximal 200 Huruf</label>
                                 </div>
-                                <textarea class="form-control" name="urai" id="" cols="100" rows="auto" required>{{ $lembur->urai }}</textarea>
-                                </input>
+                                <textarea class="form-control @error('kgtn') is-invalid @enderror" name="urai" id="" cols="100" rows="auto"  required >{{ $lembur->urai }}</textarea>
                                 @error('urai')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

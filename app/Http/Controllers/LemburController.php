@@ -37,8 +37,8 @@ class LemburController extends Controller
             'name' => 'required|max:50',
             'dari' => 'required',
             'sampai' => 'required',
-            'kgtn',
-            'urai' => 'required',
+            'kgtn' => 'required',
+            'urai' => 'required|max:225',
 
         ]);
 
@@ -75,8 +75,8 @@ class LemburController extends Controller
             'nip' => 'required|min:11',
             'dari' => 'required',
             'sampai' => 'required',
-            'kgtn',
-            'urai' => 'required',
+            'kgtn' => 'required',
+            'urai' => 'required|max:225',
 
         ]);
 
