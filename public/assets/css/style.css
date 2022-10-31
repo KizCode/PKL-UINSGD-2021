@@ -6,7 +6,7 @@ table.fixed td {
     overflow: hidden;
 }
 
-td {
+table tr {
     margin-bottom: 1.5cm;
 }
 
