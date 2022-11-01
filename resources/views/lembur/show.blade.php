@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data PTIPD</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')  }}">
 </head>
 
-<body style="width: auto; font-family: 'Times New Roman', Times, serif;  ">
+<body style="width: auto; font-family: 'Times New Roman', Times, serif">
     <div>
         <table>
             <div style="text-align: left;">
                 <img src="{{ asset('assets/img/logo-uin-199x300.png') }}" alt="logo UIN"
                     style="width: 100px; float: left; margin-right: 20px">
-                <div style="text-align: right; text-align: center; font-size: 14pt; margin-top:10px;">
+                <div
+                    style="text-align: right; text-align: center; font-size: 14pt; margin-top:10px;">
                     KEMENTERIAN AGAMA <br>
 
                     UNIVERSITAS ISLAM NEGERI <br>
@@ -31,7 +32,7 @@
                 </div>
                 <div style="text-align: center; font-size: 11pt;">
                     Jl. A.H. Nasution No. 105 Cibiru Bandung 40614 🕿 (022) 7800525 <br>
-                    Fax.(022)7803936 Website: http://ptipd.uinsgd.ac.id
+                    Fax.(022)7803936 Website: http://ptipd.uinsgd.ac.id 
                     E-mail: ptipd@uinsgd.ac.id
                 </div>
 
@@ -55,11 +56,12 @@
         </div>
 
 
-        <div class="ms-50px pb-50px" style="text-align: left; margin-top: 40px;">
+        <div class="ms-50px pb-50px" style="text-align: left">
 
             <table style="font-size: 12pt">
+
                 <tr>
-                    <td>Nama</td>
+                    <td>Nama </td>
                     <td>:</td>
                     <td>{{ $lembur->name }}</td>
                 </tr>
@@ -91,35 +93,29 @@
                     <td>{{ $lembur->kgtn }}</td>
                 </tr>
                 <tr>
-                    <td>Hasil Uraian </td>
+                    <td>Uraian Lembur </td>
                     <td>: </td>
                 </tr>
             </table>
+            </h3>
         </div>
-        <table
-            style="font-size: 12pt; border: 2px solid black; border-radius: 10px; width: 100%; padding-bottom:50%; word-break:break-all; margin-bottom: 10px; margin-top: 20px;">
+        <table style="font-size: 12pt; border: 2px solid black; border-radius: 10px; width: 100%; padding-bottom:50%; word-break:break-all; margin-bottom: 10px;">
             <tr>
                 <td>{{ $lembur->urai }}</td>
             </tr>
         </table>
     </div>
-
-    <script type="text/javascript">
-        window.print();
-    </script>
-</body>
-<footer>
-    <div style="float: left; margin-top: 60px;">
+    <div style="float: left">
         <div style="margin-bottom: 75px">
             Mengetahui <br>
             Kepala PTIPD, <br>
         </div>
         <div>
-            Undang Syaripudin, M.Kom <br>
+            Undang Syaripudin, M.Kom <br>			                                     
             NIP. 197909302009121002
         </div>
     </div>
-    <div style="float: right; margin-top: 60px;">
+    <divs style="float: right">
         <div style="margin-bottom: 75px">
             Bandung, {{ $lembur->created_at->isoFormat('D MMMM Y') }} <br>
             Yang Melaksanakan Lembur, {{ $lembur->name }}
@@ -128,7 +124,11 @@
             {{ $lembur->nip }} <br>
             NIP/NIK
         </div>
-    </div>
-</footer>
+    </divs>
+
+    <script type="text/javascript">
+        window.print();
+    </script>
+</body>
 
 </html>
