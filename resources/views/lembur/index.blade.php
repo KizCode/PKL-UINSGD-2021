@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor"
                                 class="bi bi-clipboard2-data-fill" viewBox="0 0 20 20">
                                 <path
                                     d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
@@ -49,7 +49,7 @@
                     @php $no = 1; @endphp
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered " width="100%" cellspacing="0">
+                            <table class="table table-bordered" style="text-align: center" width="100%" cellspacing="0">
                                 <thead>
                                     <th>No</th>
                                     <th>NIP</th>
@@ -65,18 +65,19 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nip }}</td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->htgl = $data->created_at->isoFormat('dddd, D MMMM Y') }}</td>
+                                        <td>{{ Carbon\Carbon::parse($data->created_at)->isoFormat('dddd, D MMMM Y') }}</td>
                                         @php
                                             $awal = date_create($data->dari);
                                             $akhir = date_create($data->sampai);
                                             $diff = date_diff($awal, $akhir);
+                                            $lem = $diff->h * 3600;
                                         @endphp
                                         <td>
-                                            @if ($diff->h > 00)
-                                                {{ $diff->h }} Jam
+                                            @if ($lem > 00)
+                                                {{ $diff->h }} :
                                             @endif
                                             @if ($diff->i > 00)
-                                                {{ $diff->i }} Menit
+                                                {{ $diff->i }}
                                             @endif
                                         </td>
                                         <td>{{ $data->kgtn }}</td>
@@ -85,10 +86,12 @@
                                             <form action="{{ route('lembur.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route('lembur.show', $data->id) }}"
-                                                    class="btn btn-primary btn-icon-split">
-                                                    <span class="text">Print</span>
-                                                </a> |
+                                                @if ($lem > 30600)
+                                                    <a href="{{ route('lembur.show', $data->id) }}"
+                                                        class="btn btn-primary btn-icon-split">
+                                                        <span class="text bi bi-printer-fill">Print</span>
+                                                    </a> |
+                                                @endif
                                                 @if (auth()->user()->level == 'User')
                                                     <a href="{{ route('lembur.edit', $data->id) }}"
                                                         class="btn btn-warning btn-icon-split">

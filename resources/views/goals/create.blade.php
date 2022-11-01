@@ -23,14 +23,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Gol</label>
-                                <input type="text" name="nip" value="{{ Auth::user()->nip }}"
-                                    class="form-control @error('nip') is-invalid @enderror"></input>
-                                @error('nip')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                
                             <div class="mb-3">
                                 <label for="">Jabatan</label>
                                 <input type="text" name="kgtn" value="Lembur"

@@ -14,11 +14,13 @@ class Lembur extends Model
     public $fillable = [
         'name',
         'nip',
+        'tgl',
         'dari',
         'sampai',
-        'waktu',    
+        'waktu',
         'kgtn' => "Lembur",
-        'urai',
+        'urai'
     ];
+
     public $timestamps = true;
 }

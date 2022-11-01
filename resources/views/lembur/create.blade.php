@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -34,6 +33,26 @@
                             <div class="mb-3">
                                 <label for="">Kegiatan</label>
                                 <input type="text" name="kgtn" value="Lembur"
+                                    class="form-control @error('kgtn') is-invalid @enderror" required></input>
+                                @error('kgtn')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Tanggal</label>
+                                <input type="date" name="tgl" class="form-control @error('tgl') is-invalid @enderror"
+                                    required></input>
+                                @error('tgl')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Jam Datang</label>
+                                <input type="time" name="dari" value="07:30"
                                     class="form-control @error('kgtn') is-invalid @enderror"></input>
                                 @error('kgtn')
                                     <span class="invalid-feedback" role="alert">
@@ -42,17 +61,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="">Dari Jam</label>
-                                <input type="time" name="dari" value="16:00"
-                                    class="form-control @error('kgtn') is-invalid @enderror"></input>
-                                @error('kgtn')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="">Sampai Jam</label>
+                                <label for="">Jam Pulang</label>
                                 <input type="time" name="sampai" value="16:15"
                                     class="form-control @error('kgtn') is-invalid @enderror"></input>
                                 @error('kgtn')

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">
-    
+
 </head>
 
 <body id="page-top">
@@ -29,10 +29,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px">
-            <img class="animation__shake" src="/docs/3.1//assets/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60" style="display: none;">
-        </div>
+
 
         <!-- Sidebar -->
         @include('layouts.includes.sidebar')
@@ -41,7 +38,10 @@
         @include('sweetalert::alert')
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
+            <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px">
+                <img class="animation__shake" src="{{ asset('assets/img/PTIPD.jpg') }}" alt="AdminLTELogo"
+                    height="60" width="60" style="display: none;">
+            </div>
             <!-- Main Content -->
             <div id="content">
 
@@ -112,42 +112,24 @@
             </footer>
             <!-- End of Footer -->
 
-            <!-- Bootstrap core JavaScript-->
+            <!-- JavaScript-->
             <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
             <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-            <!-- Page level plugins -->
-            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
             <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
-
-            <!-- Core plugin JavaScript-->
             <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
-            
-            {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
             <script>
                 $(document).ready(function() {
                     $('#dataTable').DataTable();
                 });
             </script>
-
             <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-            <!-- Custom scripts for all pages-->
             <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
-
-            <!-- Page level plugins -->
-            <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
-
-            <!-- Page level custom scripts -->
-            <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
-            <script src="{{ asset('sbadmin2/js/demo/chart-pie-demo.js') }}"></script>
-            <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
-
-            <!-- Page level custom scripts -->
+            <script src=""></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-
+            
         </div>
     </div>
 </body>
