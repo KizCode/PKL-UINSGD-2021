@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('name');
+            $table->foreignId('jabatan_id')
+                ->nullable()
+                ->constrained('jabatans')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('level')->default('User');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

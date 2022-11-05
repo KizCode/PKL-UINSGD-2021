@@ -15,12 +15,12 @@ class JabatanSeeder extends Seeder
     public function run()
     {
         Jabatan::create([
-            'jabatan_id' => '1',
+            'id' => 1,
             'jabatan' => 'Dosen',
         ]);
 
         Jabatan::create([
-            'jabatan_id' => '2',
+            'id' => 2,
             'jabatan' => 'Staff',
         ]);
 

@@ -43,7 +43,7 @@
                     height="60" width="60" style="display: none;">
             </div>
             <!-- Main Content -->
-            <div id="content">
+            <div id="content" class="bg-primary">
 
                 <!-- Topbar -->
                 @include('layouts.includes.navbar')
@@ -103,13 +103,6 @@
             </div>
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; PTIPD SUNAN GUNUNG DJATI</span>
-                    </div>
-                </div>
-            </footer>
             <!-- End of Footer -->
 
             <!-- JavaScript-->
@@ -119,9 +112,17 @@
             <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
             <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
             <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+            <link rel="stylesheet" type="text/css"
+                href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
+
+            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+
             <script>
                 $(document).ready(function() {
-                    $('#dataTable').DataTable();
+                    $('#dataTable').DataTable({
+
+
+                    });
                 });
             </script>
             <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -129,7 +130,21 @@
             <script src=""></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-            
+            <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
+            <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
+            <script src="{{ asset('sbadmin2/js/demo/chart-bar-demo.js') }}"></script>
+
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span class="text-dark">
+                            <h6>
+                                Copyright &copy; PTIPD SUNAN GUNUNG DJATI
+                            </h6>
+                        </span>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </body>

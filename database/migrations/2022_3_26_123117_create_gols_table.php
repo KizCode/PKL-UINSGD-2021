@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('gols', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('gol');
-            $table->string('jepe');
+            $table->foreignId('jabatan_id')
+                ->constrained('jabatans')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('lembur_id')
+                ->constrained('lemburs')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

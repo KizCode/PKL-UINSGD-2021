@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lembur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LemburController extends Controller
 {
@@ -17,11 +18,9 @@ class LemburController extends Controller
 
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
-        $lembur = Lembur::all();
-        $lemburs = Lembur::where('kgtn', 'Lembur')->count();
-
+        $lembur = Lembur::with('user')->paginate(10);
+        $lemburs = Lembur::all('id')->count();
         return view('lembur.index', ['lembur' => $lembur], compact('lemburs'));
-
     }
 
     public function create()
@@ -33,8 +32,6 @@ class LemburController extends Controller
     {
         $request->validate([
 
-            'nip' => 'required|min:11',
-            'name' => 'required|max:50',
             'tgl' => 'required|date',
             'dari' => 'required',
             'sampai' => 'required',
@@ -44,18 +41,17 @@ class LemburController extends Controller
         ]);
 
         $lembur = new Lembur();
-        $lembur->nip = $request->nip;
-        $lembur->name = $request->name;
         $lembur->tgl = $request->tgl;
         $lembur->dari = $request->dari;
         $lembur->sampai = $request->sampai;
         $lembur->kgtn = $request->kgtn;
         $lembur->urai = $request->urai;
+        $lembur->user_id = Auth::user()->id;
 
         $lembur->save();
 
         return redirect()->route('lembur.index')
-            ->with('success', 'Data berhasil dihapus!');
+            ->with(['success', 'Data berhasil dihapus!']);
     }
 
     public function show($id)
@@ -73,8 +69,7 @@ class LemburController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:50',
-            'nip' => 'required|min:11',
+
             'tgl' => 'required|date',
             'dari' => 'required',
             'sampai' => 'required',
@@ -84,8 +79,6 @@ class LemburController extends Controller
         ]);
 
         $lembur = Lembur::findOrFail($id);
-        $lembur->name = $request->name;
-        $lembur->nip = $request->nip;
         $lembur->tgl = $request->tgl;
         $lembur->dari = $request->dari;
         $lembur->sampai = $request->sampai;
@@ -96,7 +89,6 @@ class LemburController extends Controller
 
         return redirect()->route('lembur.index')
             ->with('success', 'Data berhasil diedit!');
-
     }
 
     public function destroy($id)

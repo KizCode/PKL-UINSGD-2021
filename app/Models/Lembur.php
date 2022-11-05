@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,15 +11,14 @@ class Lembur extends Model
 
     protected $guarded = ['id'];
     public $fillable = [
-        'name',
-        'nip',
-        'tgl',
-        'dari',
-        'sampai',
-        'waktu',
-        'kgtn' => "Lembur",
-        'urai'
+        'tgl', 'dari', 'sampai', 'waktu', 'kgtn' => "Lembur", 'urai','user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+
+    }
 
     public $timestamps = true;
 }

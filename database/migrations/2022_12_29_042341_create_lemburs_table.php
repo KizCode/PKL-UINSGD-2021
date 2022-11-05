@@ -14,13 +14,16 @@ return new class extends Migration
     {
         Schema::create('lemburs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('nip');
             $table->date('tgl');
             $table->time('dari')->default('16:00');
             $table->time('sampai');
             $table->string('kgtn')->default('Lembur');
             $table->string('urai');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

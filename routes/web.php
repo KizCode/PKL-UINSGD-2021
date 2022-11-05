@@ -1,16 +1,14 @@
 <?php
 
 use App\Http\Controllers\golController;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\UpdatePasswordController;
 use App\Http\Controllers\UserController;
+use App\Models\Lembur;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Contracts\Role;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +32,14 @@ Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
     //     return view('admin.index');
     // });
     Alert::alert('Welcome', 'UIN PTIPD', 'success');
-    Route::resource('lembur', LemburController::class);
     Route::resource('user', UserController::class);
 
 });
 
 Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::get('/home', function () {
-        return view('welcome');
+        $lembur = Lembur::with('user')->where('user_id', Auth::user()->id)->firstOrFail();
+        return view('lembur', ['lembur' => $lembur]);
     });
     Route::resource('lembur', LemburController::class);
     Route::resource('goals', GolController::class);

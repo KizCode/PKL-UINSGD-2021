@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\User;
-use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
@@ -22,11 +22,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $user = User::all();
+    {;
+        $user = User::with('jabatan')->paginate(10);
+        $juser = User::all('id')->count();
         $users = User::where('level','user')->count();
         $admins = User::where('level','admin')->count();
-        return view('user.index', ['user' => $user], compact('users', 'admins'));
+        return view('user.index', ['user' => $user], compact('users', 'juser', 'admins'));
 
     }
 
@@ -37,7 +38,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $jab = Jabatan::all();
+        $use = User::with('jabatan');
+        return view('user.create', compact('jab', 'use'));
     }
 
     /**
@@ -80,6 +83,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $use = User::with('jabatan')->findOrFail($id);
         return view('user.show', compact('user'));
 
     }
@@ -92,8 +96,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $jab = Jabatan::all();
         $user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('user','jab'));
 
     }
 

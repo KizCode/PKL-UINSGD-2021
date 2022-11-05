@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Jabatan;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -20,20 +18,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      *
-     * 
+     *
      */
 
-    protected $guarded = [
-        'id',
-    ];
-    
     public $fillable = [
-        'nip',
-        'name',
-        'level',
-        'email',
-        'password',
+        'nip', 'name', 'jabatan_id', 'level', 'email', 'password',
     ];
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan_id');
+    }
+
+    public function lembur()
+    {
+        return $this->hasMany(Lembur::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -53,4 +54,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }
