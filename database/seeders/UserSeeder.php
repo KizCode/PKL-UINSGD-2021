@@ -16,17 +16,19 @@ class UserSeeder extends Seeder
     {
 
 
-        $admin = User::create(array_merge([
+        $admin = User::updateOrCreate(array_merge([
             'nip' => '2',
             'name' => 'admin',
+            'jabatan_id' => 1,
             'level' => 'Admin',
             'email' => 'adminuin@role.test',
             'password' => bcrypt('12345678'),
         ]));
 
-        $user = User::create(array_merge([
+        $user = User::updateOrCreate(array_merge([
             'nip' => '12345678901',
             'name' => 'user',
+            'jabatan_id' => 2,
             'level' => 'User',
             'email' => 'useruin@role.test',
             'password' => bcrypt('12345678'),

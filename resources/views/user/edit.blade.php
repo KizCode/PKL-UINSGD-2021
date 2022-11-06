@@ -73,7 +73,7 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label" for="name">Password</label>
                                 <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password" required
+                                    class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $user->password }}"
                                     autocomplete="new-password" placeholder="Password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

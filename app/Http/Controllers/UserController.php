@@ -118,7 +118,7 @@ class UserController extends Controller
             'name' => 'required|max:50',
             'level' => 'string',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'nullable',
         ]);
 
 

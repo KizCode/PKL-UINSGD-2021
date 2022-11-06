@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\golController;
+use App\Http\Controllers\GolController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\UpdatePasswordController;

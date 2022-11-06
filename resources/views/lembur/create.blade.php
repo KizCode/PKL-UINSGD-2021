@@ -61,9 +61,7 @@
                             </div>
                             <div class="mb-3 col-12" style="float">
                                 <label for="">Uraian</label>
-                                <textarea class="form-control" name="urai" id="" cols="100" rows="auto" required>
-
-                                </textarea>
+                                <textarea class="form-control" name="urai" id="" cols="100" rows="auto" required></textarea>
                                 @error('urai')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

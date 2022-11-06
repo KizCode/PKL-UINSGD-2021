@@ -16,12 +16,17 @@ class JabatanSeeder extends Seeder
     {
         Jabatan::create([
             'id' => 1,
-            'jabatan' => 'Dosen',
+            'jabatan' => 'Anggota',
         ]);
 
         Jabatan::create([
             'id' => 2,
             'jabatan' => 'Staff',
+        ]);
+
+        Jabatan::create([
+            'id' => 3,
+            'jabatan' => 'Dosen',
         ]);
 
     }
