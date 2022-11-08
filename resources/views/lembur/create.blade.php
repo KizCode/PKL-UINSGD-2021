@@ -70,7 +70,7 @@
                             </div>
                             <div class="mb-3 col-4 container">
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="submit" id="tombol" onclick="Swal('Data Ditambahkan', 'Data Telah Di Tambahkan', 'success')">
+                                    <button class="btn btn-primary" type="submit"    onclick="showAlert()">
                                         Save
                                     </button>
                                 </div>

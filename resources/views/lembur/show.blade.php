@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data PTIPD</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css')  }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body style="width: auto; font-family: 'Times New Roman', Times, serif">
@@ -15,8 +15,7 @@
             <div style="text-align: left;">
                 <img src="{{ asset('assets/img/logo-uin-199x300.png') }}" alt="logo UIN"
                     style="width: 100px; float: left; margin-right: 20px">
-                <div
-                    style="text-align: right; text-align: center; font-size: 14pt; margin-top:10px;">
+                <div style="text-align: right; text-align: center; font-size: 14pt; margin-top:10px;">
                     KEMENTERIAN AGAMA <br>
 
                     UNIVERSITAS ISLAM NEGERI <br>
@@ -32,7 +31,7 @@
                 </div>
                 <div style="text-align: center; font-size: 11pt;">
                     Jl. A.H. Nasution No. 105 Cibiru Bandung 40614 🕿 (022) 7800525 <br>
-                    Fax.(022)7803936 Website: http://ptipd.uinsgd.ac.id 
+                    Fax.(022)7803936 Website: http://ptipd.uinsgd.ac.id
                     E-mail: ptipd@uinsgd.ac.id
                 </div>
 
@@ -63,27 +62,37 @@
                 <tr>
                     <td>Nama </td>
                     <td>:</td>
-                    <td>{{ $lembur->name }}</td>
+                    <td>{{ $lembur->user->name }}</td>
                 </tr>
                 <tr>
                     <td>Hari dan Tanggal </td>
                     <td>: </td>
-                    <td>{{ $lembur->htgl = $lembur->created_at->isoFormat('dddd, D MMMM Y') }}</< /td>
+                    <td>{{ $hari = Carbon\Carbon::parse($lembur->tgl)->isoFormat('dddd, D MMMM Y') }}</td>
                 </tr>
                 @php
+                    $hari = Carbon\Carbon::parse($lembur->tgl)->isoFormat('dddd');
                     $awal = date_create($lembur->dari);
                     $akhir = date_create($lembur->sampai);
                     $diff = date_diff($awal, $akhir);
+                    $lem = $diff->h * 3600 + $diff->i * 60;
                 @endphp
                 <tr>
-                    <td>Waktu </td>
+                    <td>Waktu Lembur</td>
                     <td>:</td>
                     <td>
-                        @if ($diff->h > 00)
-                            {{ $diff->h }} Jam
-                        @endif
-                        @if ($diff->i > 00)
-                            {{ $diff->i }} Menit
+                        @if ($lem <= 0)
+                            Tidak Lembur
+                        @elseif ($lem >= 32400)
+                            @php
+                                $jam = ($lem - 28800) / 3600;
+                                echo round($jam) . ' Jam';
+                            @endphp
+                        @elseif ($lem >= 28800)
+                            @if (($lem - 28800) / 60 < 45)
+                                Tidak Lembur
+                            @else
+                                {{ ($lem - 28800) / 60 }} Menit
+                            @endif
                         @endif
                     </td>
                 </tr>
@@ -99,7 +108,8 @@
             </table>
             </h3>
         </div>
-        <table style="font-size: 12pt; border: 2px solid black; border-radius: 10px; width: 100%; padding-bottom:50%; word-break:break-all; margin-bottom: 10px;">
+        <table
+            style="font-size: 12pt; border: 2px solid black; border-radius: 10px; width: 100%; padding-bottom:50%; word-break:break-all; margin-bottom: 10px;">
             <tr>
                 <td>{{ $lembur->urai }}</td>
             </tr>
@@ -111,7 +121,7 @@
             Kepala PTIPD, <br>
         </div>
         <div>
-            Undang Syaripudin, M.Kom <br>			                                     
+            Undang Syaripudin, M.Kom <br>
             NIP. 197909302009121002
         </div>
     </div>

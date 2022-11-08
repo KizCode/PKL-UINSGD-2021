@@ -11,16 +11,6 @@
                         <form class="row g-2" action="{{ route('lembur.store') }}" method="post">
                             @csrf
                             <div class="mb-3 col-sm-6">
-                                <label for="">Nama</label>
-                                <input type="text" name="name" value="{{ Auth::user()->name }}"
-                                    class="form-control @error('name') is-invalid @enderror" readonly></input>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-sm-6">
                                 <label for="">Golongan</label>
                                 <select name="gol" id="">
                                     <option value="IA">Juru Muda</option>

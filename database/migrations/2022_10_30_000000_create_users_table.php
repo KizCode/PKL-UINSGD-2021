@@ -22,6 +22,11 @@ return new class extends Migration
                 ->constrained('jabatans')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('golongan_id')
+                ->nullable()
+                ->constrained('golongans')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('level')->default('User');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

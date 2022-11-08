@@ -22,26 +22,15 @@ use RealRashid\SweetAlert\Facades\Alert;
  */
 
 Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('home', HomeController::class);
-Route::resource('password/reset', UpdatePasswordController::class);
+Route::get('/', [App\Http\Controllers\LemburController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
+    Route::resource('lembur', LemburController::class);
+    Route::resource('goals', GolController::class);
+});
 
 Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
-    // Route::get('/admin', function () {
-    //     return view('admin.index');
-    // });
     Alert::alert('Welcome', 'UIN PTIPD', 'success');
     Route::resource('user', UserController::class);
 
 });
 
-Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
-    Route::get('/home', function () {
-        $lembur = Lembur::with('user')->where('user_id', Auth::user()->id)->firstOrFail();
-        return view('lembur', ['lembur' => $lembur]);
-    });
-    Route::resource('lembur', LemburController::class);
-    Route::resource('goals', GolController::class);
-
-});

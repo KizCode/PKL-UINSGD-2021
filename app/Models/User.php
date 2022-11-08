@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Jabatan;
+use App\Models\Golongan;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,12 +23,17 @@ class User extends Authenticatable
      */
 
     public $fillable = [
-        'nip', 'name', 'jabatan_id', 'level', 'email', 'password',
+        'nip', 'name', 'jabatan_id', 'golongan_id' ,'level', 'email', 'password',
     ];
 
     public function jabatan()
     {
         return $this->belongsTo(Jabatan::class, 'jabatan_id');
+    }
+
+    public function golongan()
+    {
+        return $this->belongsTo(Golongan::class, 'golongan_id');
     }
 
     public function lembur()

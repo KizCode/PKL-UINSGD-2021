@@ -18,6 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">
@@ -51,7 +52,6 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
 
 
@@ -105,34 +105,6 @@
             <!-- Footer -->
             <!-- End of Footer -->
 
-            <!-- JavaScript-->
-            <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
-            <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
-            <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
-            <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
-            <link rel="stylesheet" type="text/css"
-                href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
-
-            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
-
-            <script>
-                $(document).ready(function() {
-                    $('#dataTable').DataTable({
-
-
-                    });
-                });
-            </script>
-            <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-            <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
-            <script src=""></script>
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-            <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
-            <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
-            <script src="{{ asset('sbadmin2/js/demo/chart-bar-demo.js') }}"></script>
 
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -147,6 +119,38 @@
             </footer>
         </div>
     </div>
+    <!-- JavaScript-->
+    {{-- Area Demo --}}
+    <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/demo/chart-bar-demo.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/demo/datatables-demo.js') }}"></script>
+
+    {{-- JavaScript --}}
+    <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    {{-- CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+
+    {{-- Function --}}
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
+    <script>
+        function showAlert() {
+            swal("Good job!", "You clicked the button!", "success");
+        }
+    </script>
 </body>
 
 </html>

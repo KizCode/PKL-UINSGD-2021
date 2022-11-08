@@ -71,6 +71,38 @@
                                         <div class="form-group row">
 
                                             <div class="col-md-12">
+                                                <label class="form-label">Jabatan</label>
+                                                <select class="form-select" name="jabatan_id" id="jabtan_id"
+                                                    @error('email') is-invalid @enderror required>
+                                                    <option value="1">Guru</option>
+                                                </select>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="col-md-12">
+                                                <label class="form-label">Jabatan</label>
+                                                <select class="form-select" name="jabatan_id" id="jabtan_id"
+                                                    @error('email') is-invalid @enderror required>
+                                                    @foreach ($jabatan as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->jabatan }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="col-md-12">
                                                 <input id="email" type="email"
                                                     class="form-control  @error('email') is-invalid @enderror"
                                                     name="email" required autocomplete="email"

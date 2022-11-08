@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
 use App\Models\User;
+use App\Models\Lembur;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
-use PhpOption\Option;
 
 class UserController extends Controller
 {
@@ -23,11 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {;
-        $user = User::with('jabatan')->paginate(10);
+        $user = User::with('jabatan','golongan')->paginate(10);
+        $lemburs = Lembur::all('id')->count();
         $juser = User::all('id')->count();
-        $users = User::where('level','user')->count();
-        $admins = User::where('level','admin')->count();
-        return view('user.index', ['user' => $user], compact('users', 'juser', 'admins'));
+        return view('user.index', ['user' => $user], compact('juser', 'lemburs'));
 
     }
 
@@ -59,7 +58,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-
+        Hash::make('password');
 
         $user = new User();
         $user->nip = $request->nip;
