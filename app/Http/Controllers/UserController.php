@@ -53,7 +53,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nip' => 'required|max:20',
             'name' => 'required|max:50',
-            'level' => 'string',
+            'level' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
@@ -115,7 +115,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nip' => 'required|max:20',
             'name' => 'required|max:50',
-            'level' => 'string',
+            'level' => 'required',
             'email' => 'required',
             'password' => 'nullable',
         ]);

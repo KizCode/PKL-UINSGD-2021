@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GolController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LemburController;
@@ -23,6 +24,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\LemburController::class, 'index'])->name('home');
+
+// Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+// Register
+// Route::post('/register', [AuthController::class, 'store'])->name('store');
+// Route::get('/register', [AuthController::class, 'register'])->name('register');
+
 Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::resource('lembur', LemburController::class);
     Route::resource('goals', GolController::class);

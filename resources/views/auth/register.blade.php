@@ -16,7 +16,8 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
@@ -26,40 +27,39 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg">
-                                <div class="p-5">
+                                <div class="p-5 row g-2">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>
                                     <form method="POST" action="{{ route('register') }}">
                                         @csrf
                                         <div class="form-group row">
-
+                                            <label class="form-label">NIP</label>
                                             <div class="col-md-12">
-                                                <input id="nip" type="number"
-                                                    class="form-control @error('nip') is-invalid @enderror"
-                                                    name="nip" required autocomplete="nip" autofocus
-                                                    placeholder="NIP">
-
+                                                <input id="nip" type="number" class="form-control" name="nip"
+                                                    autocomplete="nip" autofocus placeholder="NIP"
+                                                    value="{{ old('nip') }}" @error('nip') is-invalid @enderror
+                                                    required>
                                                 @error('nip')
-                                                    <span class="invalid-feedback" role="alert">
+                                                    <div class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
-                                                    </span>
+                                                    </div>
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
-
+                                            <label class="form-label">Nama</label>
                                             <div class="col-md-12">
-                                                <input id="name" type="text"
-                                                    class="form-control @error('name') is-invalid @enderror"
-                                                    name="name" required autocomplete="name" autofocus
-                                                    placeholder="Nama">
+                                                <input id="name" type="text" class="form-control" name="name"
+                                                    autocomplete="name" autofocus placeholder="Nama"
+                                                    value="{{ old('name') }}" @error('name') is-invalid @enderror
+                                                    required>
 
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
@@ -70,29 +70,45 @@
                                         </div>
                                         <div class="form-group row">
 
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <label class="form-label">Jabatan</label>
-                                                <select class="form-select" name="jabatan_id" id="jabtan_id"
-                                                    @error('email') is-invalid @enderror required>
-                                                    <option value="1">Guru</option>
-                                                </select>
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-
-                                            <div class="col-md-12">
-                                                <label class="form-label">Jabatan</label>
-                                                <select class="form-select" name="jabatan_id" id="jabtan_id"
-                                                    @error('email') is-invalid @enderror required>
-                                                    @foreach ($jabatan as $data)
-                                                        <option value="{{ $data->id }}">{{ $data->jabatan }}</option>
+                                                <select class="form-select" name="jabatan" id="jabatan"
+                                                    @error('jabatan') is-invalid @enderror required>
+                                                    @foreach ($jab as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->jabatan }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
+                                                @error('jabatan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Golongan</label>
+                                                <select class="form-select" name="golongan" id="golongan"
+                                                    @error('golongan') is-invalid @enderror required>
+                                                    @foreach ($gol as $data)
+                                                        <option value="{{ $data->id }}">{{ $data->gol }} -
+                                                            {{ $data->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('golongan')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="form-label">Email</label>
+                                            <div class="col-md-12">
+                                                <input id="email" type="email" class="form-control" name="email"
+                                                    autocomplete="email" placeholder="Email Address"
+                                                    value="{{ old('email') }} @error('email') is-invalid @enderror"
+                                                    required>
+
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -101,27 +117,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-
+                                            <label class="form-label">Password</label>
                                             <div class="col-md-12">
-                                                <input id="email" type="email"
-                                                    class="form-control  @error('email') is-invalid @enderror"
-                                                    name="email" required autocomplete="email"
-                                                    placeholder="Email Address">
-
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-
-                                            <div class="col-md-12">
-                                                <input id="password" type="password"
-                                                    class="form-control @error('password') is-invalid @enderror"
-                                                    name="password" required autocomplete="new-password"
-                                                    placeholder="Password">
+                                                <input id="password" type="password" class="form-control"
+                                                    name="password" autocomplete="new-password" placeholder="Password"
+                                                    @error('password') is-invalid @enderror required>
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -176,7 +176,9 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 

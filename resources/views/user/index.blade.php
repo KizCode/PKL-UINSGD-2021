@@ -127,7 +127,7 @@
                                                 <td>{{ $data->nip }}</td>
                                                 <td>{{ $data->name }}</td>
                                                 <td>{{ $data->jabatan->jabatan }}</td>
-                                                <td>{{ $data->golongan->gol }}</td>
+                                                <td>{{ $data->golongan->gol }} - {{ $data->golongan->name }}</td>
                                                 <td>{{ $data->email }}</td>
                                                 <td>{{ $data->level }}</td>
                                                 <td>

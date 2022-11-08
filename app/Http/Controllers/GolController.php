@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\gol;
+use App\Models\Golongan;
 use Illuminate\Http\Request;
 
 class golController extends Controller
@@ -17,8 +18,8 @@ class golController extends Controller
 
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
-        $gol = gol::all();
-        $gols = gol::where('gol', 'gol')->count();
+        $gol = Golongan::all();
+        $gols = Golongan::where('gol', 'gol')->count();
 
         return view('goals.index', ['gol' => $gol], compact('gols'));
 
@@ -40,7 +41,7 @@ class golController extends Controller
 
         ]);
 
-        $gol = new gol();
+        $gol = new Golongan();
         $gol->jbtn = $request->jbtn;
         $gol->name = $request->name;
         $gol->gol = $request->gol;
@@ -54,13 +55,13 @@ class golController extends Controller
 
     public function show($id)
     {
-        $gol = gol::findOrFail($id);
+        $gol = Golongan::findOrFail($id);
         return view('goals.show', compact('gol'));
     }
 
     public function edit($id)
     {
-        $gol = gol::findOrFail($id);
+        $gol = Golongan::findOrFail($id);
         return view('goals.edit', compact('gol'));
     }
 
@@ -74,7 +75,7 @@ class golController extends Controller
 
         ]);
 
-        $gol = gol::findOrFail($id);
+        $gol = Golongan::findOrFail($id);
         $gol->name = $request->name;
         $gol->jbtn = $request->jbtn;
         $gol->gol = $request->gol;
@@ -90,7 +91,7 @@ class golController extends Controller
     public function destroy($id)
     {
         //
-        $gol = gol::findOrFail($id);
+        $gol = Golongan::findOrFail($id);
         $gol->delete();
         return redirect()->route('goals.index')
             ->with('success', 'Data berhasil dihapus!');

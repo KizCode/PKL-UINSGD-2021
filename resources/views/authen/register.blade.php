@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+  @extends('layouts.app')
 
-@section('content')
+  @section('content')
     <div class="container-fluid">
 
         <div class="row justify-content-center">
@@ -11,7 +11,7 @@
                     </div>
                     @include('layouts/_flash')
                     <div class="card-body p-4">
-                        <form class="row g-2" action="{{ route('user.store') }}" method="post">
+                        <form class="row g-2" action="" method="POST">
                             @csrf
                             <div class="mb-3 col-sm-6">
                                 <label class="form-label">Nama</label>
@@ -25,8 +25,8 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control  @error('tl') is-invalid @enderror" name="tl"
-                                    id="tl">
+                                <input type="date" class="form-control  @error('tl') is-invalid @enderror"
+                                    name="tl" id="tl">
                                 @error('tl')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -35,13 +35,27 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label">Jabatan</label>
-                                <select class="form-select" name="jabatan_id" id="jabtan_id"
-                                    @error('email') is-invalid @enderror required>
+                                <select class="form-select" name="jabatan_id" id="jabatan_id"
+                                    @error('jabatan_id') is-invalid @enderror required>
                                     @foreach ($jab as $data)
                                         <option value="{{ $data->id }}" default>{{ $data->jabatan }}</option>
                                     @endforeach
                                 </select>
-                                @error('email')
+                                @error('jabatan_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label class="form-label">Golongan</label>
+                                <select class="form-select" name="golongan_id" id="golongan_id"
+                                    @error('golongan_id') is-invalid @enderror required>
+                                    @foreach ($gol as $data)
+                                        <option value="{{ $data->id }}" default>{{ $data->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('golongan_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

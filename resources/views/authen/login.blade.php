@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+@extends('layouts.app')
     <div class="container-fluid">
 
         <div class="row justify-content-center">
@@ -11,7 +9,7 @@
                     </div>
                     @include('layouts/_flash')
                     <div class="card-body p-4">
-                        <form class="row g-2" action="{{ route('user.store') }}" method="post">
+                        <form class="row g-2" action="" method="POST">
                             @csrf
                             <div class="mb-3 col-sm-6">
                                 <label class="form-label">Nama</label>
@@ -25,8 +23,8 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control  @error('tl') is-invalid @enderror" name="tl"
-                                    id="tl">
+                                <input type="date" class="form-control  @error('tl') is-invalid @enderror"
+                                    name="tl" id="tl">
                                 @error('tl')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -96,4 +94,3 @@
             </div>
         </div>
     </div>
-@endsection

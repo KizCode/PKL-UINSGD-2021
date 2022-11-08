@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
-use App\Models\Jabatan;
+
 use App\Models\Golongan;
+use App\Models\Jabatan;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,8 +23,14 @@ class User extends Authenticatable
      *
      */
 
-    public $fillable = [
-        'nip', 'name', 'jabatan_id', 'golongan_id' ,'level', 'email', 'password',
+    protected $fillable = [
+        'nip', 
+        'name', 
+        'jabatan_id', 
+        'golongan_id', 
+        'level', 
+        'email', 
+        'password',
     ];
 
     public function jabatan()
@@ -40,7 +47,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lembur::class);
     }
-
 
     /**
      * The attributes that should be hidden for serialization.
