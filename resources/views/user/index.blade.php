@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div>
-        <div class="col-xl-container col-md-4 mb-4 float-start">
+    <div class="row sortable-card ui-sortable">
+        <div class="col col-md-4 mb-4 ">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor"
+                            <svg xmlns="" width="50" fill="currentColor"
                                 class="bi bi-people-fill" viewBox="0 0 20 20">
                                 <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 <path fill-rule="evenodd"
@@ -27,9 +27,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div class="col-xl-container col-md-4 mb-4 float-start">
+        <div class="col col-md-4 mb-4 ">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -42,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor"
+                            <svg xmlns="" width="50" fill="currentColor"
                                 class="bi bi-clipboard2-data-fill" viewBox="0 0 20 20">
                                 <path
                                     d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
@@ -54,28 +52,29 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-xl-container col-md-4 mb-4 float-end">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Perintah Kerja</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
 
-                            {{-- {{ $lembur }} --}}0
-                            <span>SPK Lembur</span>
+        <div class="col-xl-container col-md-4 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body float-end">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Perintah Kerja</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                {{-- {{ $lembur }} --}}0
+                                <span>SPK Lembur</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor"
-                            class="bi bi-clipboard2-data-fill" viewBox="0 0 20 20">
-                            <path
-                                d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
-                            <path
-                                d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1Z" />
-                        </svg>
+                        <div class="col-auto float-end">
+                            <svg xmlns="" width="50" fill="currentColor"
+                                class="bi bi-clipboard2-data-fill" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
+                                <path
+                                    d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1Z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,65 +90,82 @@
                     </div>
                 @endif
                 @include('sweetalert::alert')
-                <div class="card mb-4">
-                    <div class="card-header mb-0 m-0 font-weight-bold text-primary">
-                        <span>
-                            USER TERDAFTAR
-                        </span>
-                        @if (auth()->user()->level == 'Admin')
-                            <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary" style="float: right;">Tambah
-                                Data
-                            </a>
-                        @endif
-                    </div>
+
                     @php $no = 1; @endphp
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <div class="table-container">
-                                <table class="table table-bordered dataTable" aria-describedby="dataTable_info"
-                                    width="100%" cellspacing="0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NIP</th>
-                                            <th>Nama</th>
-                                            <th>Jabatan</th>
-                                            <th>Golongan</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $no = 1; @endphp @foreach ($user as $data)
+                    <div class="col-12 col-md-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>USER TERDAFTAR</h4>
+                                @if (auth()->user()->level == 'Admin')
+                                    <a class="btn btn-sm btn-primary ms-5 float-end" href="{{ route('user.create') }}" >Tambah Data</a>
+                                @endif
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="dataTable" class="table-responsive" >
+                                    <table class="table table-striped table-md">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $no++ }}</td>
-                                                <td>{{ $data->nip }}</td>
-                                                <td>{{ $data->name }}</td>
-                                                <td>{{ $data->jabatan->jabatan }}</td>
-                                                <td>{{ $data->golongan->gol }} - {{ $data->golongan->name }}</td>
-                                                <td>{{ $data->email }}</td>
-                                                <td>{{ $data->level }}</td>
-                                                <td>
-                                                    <form action="{{ route('user.destroy', $data->id) }}" method="post">
-                                                        @csrf @method('delete')
-                                                        <a href="{{ route('user.edit', $data->id) }}"
-                                                            class="btn btn-sm btn-outline-success">
-                                                            Edit
-                                                        </a> |
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                            onclick="return confirm('Apakah Anda Yakin?')">Delete
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                <th>ID</th>
+                                                <th>NIP</th>
+                                                <th>Nama</th>
+                                                <th>Jabatan</th>
+                                                <th>Golongan</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @php $no = 1; @endphp @foreach ($user as $data)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $data->nip }}</td>
+                                                    <td>{{ $data->name }}</td>
+                                                    <td>{{ $data->jabatan->jabatan }}</td>
+                                                    <td>{{ $data->golongan->gol }} - {{ $data->golongan->name }}</td>
+                                                    <td>{{ $data->email }}</td>
+                                                    <td>{{ $data->level }}</td>
+                                                    <td>
+                                                        <form action="{{ route('user.destroy', $data->id) }}"
+                                                            method="post">
+                                                            @csrf @method('delete')
+                                                            <a href="{{ route('user.edit', $data->id) }}"
+                                                                class="btn btn-sm btn-outline-success">
+                                                                Edit
+                                                            </a> |
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                                onclick="return confirm('Apakah Anda Yakin?')">Delete
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <nav class="d-inline-block">
+                                    <ul class="pagination mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1"><i
+                                                    class="fas fa-chevron-left"></i></a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1 <span
+                                                    class="sr-only">(current)</span></a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
         </div>
     </div>

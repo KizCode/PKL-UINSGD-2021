@@ -50,7 +50,6 @@ class LemburController extends Controller
         $lembur->urai = $request->urai;
         $lembur->user_id = Auth::user()->id;
 
-
         if ($lembur->tgl > \Carbon\Carbon::now()) {
             return back();
         } else {
