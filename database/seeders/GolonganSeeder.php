@@ -86,17 +86,17 @@ class GolonganSeeder extends Seeder
         ]);
 
         Golongan::create([
-            'gol' =>'',
+            'gol' =>'IVC',
             'name' => 'Pembina Utama Muda',
         ]);
 
         Golongan::create([
-            'gol' =>'',
+            'gol' =>'IVD',
             'name' => 'Pembina Utama Madya',
         ]);
 
         Golongan::create([
-            'gol' =>'',
+            'gol' =>'IVE',
             'name' => 'Pembina Utama',
         ]);
 

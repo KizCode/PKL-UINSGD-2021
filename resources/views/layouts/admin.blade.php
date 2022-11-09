@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,7 +35,7 @@
         @include('layouts.includes.sidebar')
         <!-- End of Sidebar -->
         @include('layouts._flash')
-        @include('sweetalert::alert')
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px">
@@ -106,7 +105,7 @@
             <!-- End of Footer -->
 
 
-            <footer class="sticky-footer bg-white">
+            {{-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span class="text-dark">
@@ -116,16 +115,18 @@
                         </span>
                     </div>
                 </div>
-            </footer>
+            </footer> --}}
         </div>
     </div>
     <!-- JavaScript-->
     {{-- Area Demo --}}
+
+    @include('sweetalert::alert')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('sbadmin2/js/demo/chart-bar-demo.js') }}"></script>
     <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('sbadmin2/js/demo/datatables-demo.js') }}"></script>
-
     {{-- JavaScript --}}
     <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -146,11 +147,11 @@
             $('#dataTable').DataTable();
         });
     </script>
-    <script>
+    {{-- <script>
         function showAlert() {
             swal("Good job!", "You clicked the button!", "success");
         }
-    </script>
+    </script> --}}
 </body>
 
 </html>

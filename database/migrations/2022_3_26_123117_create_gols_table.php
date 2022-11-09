@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('gols', function (Blueprint $table) {
             $table->id();
             $table->string('gol');
-            $table->foreignId('jabatan_id')
-                ->constrained('jabatans')
+            $table->foreignId('user_id')
+                ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('lembur_id')

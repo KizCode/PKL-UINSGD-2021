@@ -12,11 +12,11 @@
                 @include('sweetalert::alert')
                 <div class="card shadow mb-4">
                     <div class="card-header mb-3 m-0 font-weight-bold text-primary">Laporan Lembur
-                        @if (auth()->user()->level == 'User')
+                        {{-- @if (auth()->user()->level == 'User') --}}
                             <a href="{{ route('goals.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
                                 Data
                             </a>
-                        @endif
+                        {{-- @endif --}}
                     </div>
                     @php $no = 1; @endphp
                     <div class="card-body">
@@ -36,8 +36,9 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->gol }}</td>
-                                        <td>{{ $data->jbtn }}</td>
-                                        <td>{{ $data->jepe }}</td>
+                                        <td>{{ $data->user->jabatan->name }}</td>
+                                        <td>{{ $data->user->golongan->gol }}</td>
+                                        <td>{{ $data->user->urai }}</td>
                                         <td>
                                             <form action="{{ route('goals.destroy', $data->id) }}" method="post">
                                                 @method('delete')

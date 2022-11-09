@@ -24,12 +24,12 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
-        'nip', 
-        'name', 
-        'jabatan_id', 
-        'golongan_id', 
-        'level', 
-        'email', 
+        'nip',
+        'name',
+        'jabatan_id',
+        'golongan_id',
+        'level',
+        'email',
         'password',
     ];
 
@@ -46,6 +46,11 @@ class User extends Authenticatable
     public function lembur()
     {
         return $this->hasMany(Lembur::class);
+    }
+
+    public function gol()
+    {
+        return $this->hasMany(Gol::class);
     }
 
     /**

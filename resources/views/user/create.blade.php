@@ -11,7 +11,7 @@
                     </div>
                     @include('layouts/_flash')
                     <div class="card-body p-4">
-                        <form class="row g-2" action="{{ route('user.store') }}" method="post">
+                        <form class="row g-2" action="{{ route('register') }}" method="post">
                             @csrf
                             <div class="mb-3 col-sm-6">
                                 <label class="form-label">Nama</label>
@@ -37,6 +37,8 @@
                                 <label class="form-label">Jabatan</label>
                                 <select class="form-select" name="jabatan_id" id="jabtan_id"
                                     @error('email') is-invalid @enderror required>
+                                    <option value="{{ Auth::user()->jabatan->id }}" disabled>
+                                        {{ Auth::user()->jabatan->jabatan }}</option>
                                     @foreach ($jab as $data)
                                         <option value="{{ $data->id }}" default>{{ $data->jabatan }}</option>
                                     @endforeach
@@ -52,7 +54,7 @@
                                 <select name="level" id="level" class="form-select"
                                     @error('level') is-invalid @enderror name="level" id="level">
                                     <option value="User" default>User</option>
-                                    <option value="Dosen">Dosen</option>
+                                    <option value="Admin">Admin</option>
                                 </select>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -77,6 +79,9 @@
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password" placeholder="Password">
+                                    <div id="passwordHelpBlock" class="form-text">
+                                        Must be 8-20 characters long.
+                                    </div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">

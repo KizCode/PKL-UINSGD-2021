@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lembur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LemburController extends Controller
 {
@@ -25,12 +26,13 @@ class LemburController extends Controller
 
     public function create()
     {
-        return view('lembur.create');
+        return view('lembur.create')
+            ->with("Good job!", "You clicked the button!", "success");
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        Validator::make($request->all(), [
 
             'tgl' => 'required|date',
             'dari' => 'required',
@@ -48,10 +50,17 @@ class LemburController extends Controller
         $lembur->urai = $request->urai;
         $lembur->user_id = Auth::user()->id;
 
-        $lembur->save();
 
-        return redirect()->route('lembur.index')
-            ->with(['success', 'Data berhasil dihapus!']);
+        if ($lembur->tgl > \Carbon\Carbon::now()) {
+            return back();
+        } else {
+            $lembur->save();
+            return redirect()->route('lembur.index')
+                ->with('success', 'Task Created Successfully!');
+        }
+
+
+
     }
 
     public function show($id)

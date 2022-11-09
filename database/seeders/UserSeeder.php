@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
 
 
         $admin = User::updateOrCreate(array_merge([
-            'nip' => '2',
+            'nip' => '20987654321',
             'name' => 'admin',
             'jabatan_id' => 1,
             'golongan_id' => 1,
