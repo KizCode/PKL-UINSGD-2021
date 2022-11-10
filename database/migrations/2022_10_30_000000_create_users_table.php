@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('name');
+            $table->string('foto')->nullable();
             $table->foreignId('jabatan_id')
                 ->nullable()
                 ->constrained('jabatans')

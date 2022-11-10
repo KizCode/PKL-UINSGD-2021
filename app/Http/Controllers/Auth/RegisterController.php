@@ -44,7 +44,7 @@ class RegisterController extends Controller
     }
 
     // public function index()
-    // { 
+    // {
     //     $jab = Jabatan::all();
     //     return view('auth.register', compact('jab'));
     // }
@@ -75,7 +75,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+
         $user = User::create([
             'nip' => $data['nip'],
             'name' => $data['name'],

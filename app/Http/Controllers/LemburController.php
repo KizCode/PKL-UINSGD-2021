@@ -26,8 +26,7 @@ class LemburController extends Controller
 
     public function create()
     {
-        return view('lembur.create')
-            ->with("Good job!", "You clicked the button!", "success");
+        return view('lembur.create');
     }
 
     public function store(Request $request)

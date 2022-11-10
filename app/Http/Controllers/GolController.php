@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gol;
+use App\Models\Jabatan;
+use App\Models\Lembur;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class golController extends Controller
+class GolController extends Controller
 {
     public function __construct()
     {
@@ -18,36 +21,37 @@ class golController extends Controller
 
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
-        $gol = Gol::with('user')->paginate(10);
-        $gols = Gol::where('gol', 'gol')->count();
+        $gol = Gol::with('user','lembur')->paginate(10);
+        $gols = Gol::where('id')->count();
         return view('goals.index', ['gol' => $gol], compact('gols'));
 
     }
 
     public function create()
     {
-        return view('goals.create');
+        $lem = Lembur::all();
+        $gol = Gol::with('lembur');
+        return view('goals.create',compact('lem','gol'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
 
-            'name' => 'required|max:50',
-            'jbtn' => 'required|min:11',
-            'gol' => 'string',
-            'jepe' => 'required',
+            'jepe' => ['nullable'],
+            'lembur' => ['nullable']
 
         ]);
 
         $gol = new Gol();
-        $gol->jbtn = $request->jbtn;
-        $gol->name = $request->name;
-        $gol->gol = $request->gol;
-        $gol->jepe = $request->jepe;
+        $gol->user_id = Auth::user()->id;
+        if ($request->jepe == true){
+            $gol->jepe = $request->jepe;
+        } else {
+            $gol->lembur_id = $request->lembur;
+        }
 
         $gol->save();
-
         return redirect()->route('goals.index')
             ->with('success', 'Data berhasil dihapus!');
     }
@@ -67,21 +71,15 @@ class golController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:50',
-            'jbtn' => 'required|min:11',
-            'gol' => 'string',
             'jepe' => 'required',
 
         ]);
 
         $gol = Gol::findOrFail($id);
-        $gol->name = $request->name;
-        $gol->jbtn = $request->jbtn;
-        $gol->gol = $request->gol;
         $gol->jepe = $request->jepe;
+        $gol->lembur_id = $request->lembur;
 
         $gol->save();
-
         return redirect()->route('goals.index')
             ->with('success', 'Data berhasil diedit!');
 

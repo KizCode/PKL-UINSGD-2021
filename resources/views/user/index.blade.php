@@ -1,6 +1,21 @@
 @extends('layouts.admin')
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PTIPD SGD | Daftar User</title>
+    {{-- <link rel="stylesheet" href="{{ asset('stisla/dist/assets/css/style.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('stisla/dist/assets/css/components.css') }}"> --}}
+</head>
 
 @section('content')
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    </div>
     <div class="row sortable-card ui-sortable">
         <div class="col col-md-4 mb-4 ">
             <div class="card border-left-danger shadow h-100 py-2">
@@ -15,8 +30,8 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <svg xmlns="" width="50" fill="currentColor"
-                                class="bi bi-people-fill" viewBox="0 0 20 20">
+                            <svg xmlns="" width="50" fill="currentColor" class="bi bi-people-fill"
+                                viewBox="0 0 20 20">
                                 <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                 <path fill-rule="evenodd"
                                     d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
@@ -40,8 +55,8 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <svg xmlns="" width="50" fill="currentColor"
-                                class="bi bi-clipboard2-data-fill" viewBox="0 0 20 20">
+                            <svg xmlns="" width="50" fill="currentColor" class="bi bi-clipboard2-data-fill"
+                                viewBox="0 0 20 20">
                                 <path
                                     d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
                                 <path
@@ -67,8 +82,8 @@
                             </div>
                         </div>
                         <div class="col-auto float-end">
-                            <svg xmlns="" width="50" fill="currentColor"
-                                class="bi bi-clipboard2-data-fill" viewBox="0 0 20 20">
+                            <svg xmlns="" width="50" fill="currentColor" class="bi bi-clipboard2-data-fill"
+                                viewBox="0 0 20 20">
                                 <path
                                     d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
                                 <path
@@ -80,7 +95,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid float-end">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-16">
                 @if (session('success'))
@@ -91,81 +106,60 @@
                 @endif
                 @include('sweetalert::alert')
 
+                @php $no = 1; @endphp
+                <div class="card mb-4">
+                    <div class="card-header mb-0 m-0 font-weight-bold text-primary">
+                        <span>User Terdaftar</span>
+                        @if (auth()->user()->level == 'Admin')
+                            <a class="btn btn-sm btn-primary ms-5 float-end" href="{{ route('user.create') }}">Tambah
+                                Data</a>
+                        @endif
+                    </div>
                     @php $no = 1; @endphp
-                    <div class="col-12 col-md-6 col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>USER TERDAFTAR</h4>
-                                @if (auth()->user()->level == 'Admin')
-                                    <a class="btn btn-sm btn-primary ms-5 float-end" href="{{ route('user.create') }}" >Tambah Data</a>
-                                @endif
-                            </div>
-                            <div class="card-body p-0">
-                                <div id="dataTable" class="table-responsive" >
-                                    <table class="table table-striped table-md">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>NIP</th>
-                                                <th>Nama</th>
-                                                <th>Jabatan</th>
-                                                <th>Golongan</th>
-                                                <th>Email</th>
-                                                <th>Role</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php $no = 1; @endphp @foreach ($user as $data)
-                                                <tr>
-                                                    <td>{{ $no++ }}</td>
-                                                    <td>{{ $data->nip }}</td>
-                                                    <td>{{ $data->name }}</td>
-                                                    <td>{{ $data->jabatan->jabatan }}</td>
-                                                    <td>{{ $data->golongan->gol }} - {{ $data->golongan->name }}</td>
-                                                    <td>{{ $data->email }}</td>
-                                                    <td>{{ $data->level }}</td>
-                                                    <td>
-                                                        <form action="{{ route('user.destroy', $data->id) }}"
-                                                            method="post">
-                                                            @csrf @method('delete')
-                                                            <a href="{{ route('user.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-outline-success">
-                                                                Edit
-                                                            </a> |
-                                                            <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                                onclick="return confirm('Apakah Anda Yakin?')">Delete
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-boardered table-md" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NIP</th>
+                                        <th>Nama</th>
+                                        <th>Jabatan</th>
+                                        <th>Golongan</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($user as $data)
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $data->nip }}</td>
+                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->jabatan->jabatan }}</td>
+                                            <td>{{ $data->golongan->gol }} - {{ $data->golongan->name }}</td>
+                                            <td>{{ $data->email }}</td>
+                                            <td>{{ $data->level }}</td>
+                                            <td>
+                                                <form action="{{ route('user.destroy', $data->id) }}" method="post">
+                                                    @csrf @method('delete')
+                                                    <a href="{{ route('user.edit', $data->id) }}"
+                                                        class="btn btn-sm btn-outline-success">
+                                                        Edit
+                                                    </a> |
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Apakah Anda Yakin?')">Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
-
+                </div>
             </div>
         </div>
     </div>

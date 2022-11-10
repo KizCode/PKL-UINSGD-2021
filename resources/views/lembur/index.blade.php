@@ -1,9 +1,27 @@
 @extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UIN PTIPD | Lembur</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">
+
+</html>
 @section('content')
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    </div>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-15">
+            <div class="col-md-16">
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -12,19 +30,18 @@
                 @include('sweetalert::alert')
                 <div class="card mb-4">
                     <div class="card-header mb-0 m-0 font-weight-bold text-primary">
-                        <span>
-                            LAPORAN LEMBUR
-                        </span>
+                        <span>Laporan Lembur</span>
                         {{-- @if (auth()->user()->level == 'User') --}}
-                        <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary" style="float: right;">Tambah
-                            Data
-                        </a>
+                            <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary"
+                                style="float: right;">Tambah
+                                Data
+                            </a>
                         {{-- @endif --}}
                     </div>
                     @php $no = 1; @endphp
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" width="100%" cellspacing="0" id="dataTable">
+                            <table class="table table-md" id="dataTable">
                                 <thead>
                                     <th>No</th>
                                     <th>NIP</th>
@@ -36,7 +53,7 @@
                                     <th>Action</th>
                                 </thead>
                                 @foreach ($lembur as $data)
-                                    @if ($data->user->nip == Auth::user()->nip || Auth::user()->level == "Admin")
+                                    @if ($data->user->nip == Auth::user()->nip || Auth::user()->level == 'Admin')
                                         <tbody>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->user->nip }}</td>
@@ -73,17 +90,17 @@
                                                     @csrf
                                                     @if ($lem >= 28800)
                                                         <a href="{{ route('lembur.show', $data->id) }}"
-                                                            class="btn btn-primary btn-icon-split">
+                                                            class="btn btn-outline-primary">
                                                             <span class="text bi bi-printer-fill">Print</span>
                                                         </a> |
                                                     @endif
                                                     @if (auth()->user()->level == 'User')
                                                         <a href="{{ route('lembur.edit', $data->id) }}"
-                                                            class="btn btn-warning btn-icon-split">
+                                                            class="btn btn-warning-warning ">
                                                             <span class="text">Edit</span>
                                                         </a> |
                                                     @endif
-                                                    <button type="submit" class="btn btn-danger btn-icon-split"
+                                                    <button type="submit" class="btn btn-outline-danger"
                                                         onclick="return confirm('Apakah Kamu Yakin?')">
                                                         <span class="text">Delete</span>
                                                     </button>

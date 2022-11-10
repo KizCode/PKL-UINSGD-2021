@@ -12,41 +12,36 @@
 <body style="width: auto; font-family: 'Times New Roman', Times, serif">
     <div>
         <table>
-            <div style="text-align: left;">
+            <td>
                 <img src="{{ asset('assets/img/logo-uin-199x300.png') }}" alt="logo UIN"
-                    style="width: 100px; float: left; margin-right: 20px">
+                    style="width: 100px; float: left;">
+
+            </td>
+            <td>
                 <div style="text-align: right; text-align: center; font-size: 14pt; margin-top:10px;">
-                    KEMENTERIAN AGAMA <br>
-
-                    UNIVERSITAS ISLAM NEGERI <br>
-
+                    KEMENTERIAN AGAMA
+                    UNIVERSITAS ISLAM NEGERI
                     SUNAN GUNUNG DJATI BANDUNG
-
-                </div>
-                <div style="font-size: 14pt; text-align: center; margin-bottom:10px; ">
-
-                    PUSAT TEKNOLOGI INFORMASI DAN <br>
+                    PUSAT TEKNOLOGI INFORMASI DAN
                     PANGKALAN DATA
-
                 </div>
                 <div style="text-align: center; font-size: 11pt;">
                     Jl. A.H. Nasution No. 105 Cibiru Bandung 40614 🕿 (022) 7800525 <br>
                     Fax.(022)7803936 Website: http://ptipd.uinsgd.ac.id
                     E-mail: ptipd@uinsgd.ac.id
                 </div>
-
-            </div>
+            </td>
         </table>
-    </div>
-    <div>
+
+
         <hr size="5px" style="background-color: black; margin-bottom: 5px;">
+    </div>
+
     </div>
     <div>
         <div style="text-align: center; font-size: 13pt; margin-top:20px; margin-bottom: 10px;">
-            <div>
+            <div class="text-center">
                 LAPORAN LEMBUR
-            </div>
-            <div>
                 PUSAT TEKNOLOGI INFORMASI DAN TEKNOLOGI
             </div>
             <div>

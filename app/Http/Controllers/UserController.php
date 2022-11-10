@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
-use App\Models\User;
 use App\Models\Lembur;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -23,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {;
-        $user = User::with('jabatan','golongan')->paginate(10);
+        $user = User::with('jabatan', 'golongan')->paginate(10);
         $lemburs = Lembur::all('id')->count();
         $juser = User::all('id')->count();
         return view('user.index', ['user' => $user], compact('juser', 'lemburs'));
@@ -53,6 +52,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nip' => 'required|max:20',
             'name' => 'required|max:50',
+            'foto' => 'required',
             'level' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -66,6 +66,13 @@ class UserController extends Controller
         $user->level = $request->level;
         $user->email = $request->email;
         $user->password = $request->password;
+        if ($request->hasFile('foto')) {
+            $user->deleteImage();
+            $image = $request->file('foto');
+            $name = rand('1000', '9999') . $image->getClientOriginalName();
+            $image->move('images/user/', $name);
+            $user->foto = $name;
+        }
 
         $user->save();
         return redirect()
@@ -97,7 +104,7 @@ class UserController extends Controller
     {
         $jab = Jabatan::all();
         $user = User::findOrFail($id);
-        return view('user.edit', compact('user','jab'));
+        return view('user.edit', compact('user', 'jab'));
 
     }
 
@@ -110,7 +117,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
 
         $validated = $request->validate([
             'nip' => 'required|max:20',
@@ -120,12 +126,19 @@ class UserController extends Controller
             'password' => 'nullable',
         ]);
 
-
+        $user = User::findOrFail($id);
         $user->nip = $request->nip;
         $user->name = $request->name;
         $user->level = $request->level;
         $user->email = $request->email;
         $user->password = $request->password;
+        if ($request->hasFile('foto')) {
+            $user->deleteImage();
+            $image = $request->file('foto');
+            $name = rand('1000', '9999') . $image->getClientOriginalName();
+            $image->move('images/user/', $name);
+            $user->foto = $name;
+        }
 
         $user->save();
         return redirect()

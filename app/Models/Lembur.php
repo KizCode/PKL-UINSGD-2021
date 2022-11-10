@@ -19,6 +19,11 @@ class Lembur extends Model
         return $this->belongsTo(User::class, 'user_id');
 
     }
+    public function gol()
+    {
+        return $this->hasMany(Gol::class);
+
+    }
 
     public $timestamps = true;
 }
