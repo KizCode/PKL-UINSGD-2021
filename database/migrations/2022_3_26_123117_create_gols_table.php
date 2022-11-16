@@ -15,9 +15,13 @@ return new class extends Migration
     {
         Schema::create('gols', function (Blueprint $table) {
             $table->id();
-            $table->string('jepe')
-                ->nullable();
+            $table->foreignId('pekerjaan_id')
+                ->nullable()
+                ->constrained('pekerjaans')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

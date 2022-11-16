@@ -102,32 +102,25 @@
             </div>
 
             <!-- Footer -->
-            <!-- End of Footer -->
-
-
-            {{-- <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span class="text-dark">
                             <h6>
-                                Copyright &copy; PTIPD SUNAN GUNUNG DJATI
+                                Copyright &copy; 2022 PTIPD Sunan Gunung Djati Bandung
                             </h6>
                         </span>
                     </div>
                 </div>
-            </footer> --}}
+            </footer>
+            <!-- End of Footer -->
+
+
         </div>
     </div>
-    <!-- JavaScript-->
-    {{-- Area Demo --}}
-
     @include('sweetalert::alert')
-    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-    <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('sbadmin2/js/demo/chart-bar-demo.js') }}"></script>
-    <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('sbadmin2/js/demo/datatables-demo.js') }}"></script>
-    {{-- JavaScript --}}
+
+    <!-- JavaScript -->
     <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
@@ -135,16 +128,21 @@
     <script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 
-    {{-- CDN --}}
+    <!-- CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Area Demo -->
+    {{-- <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/demo/chart-bar-demo.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('sbadmin2/js/demo/datatables-demo.js') }}"></script> --}}
 
-    {{-- Function --}}
+    <!-- Function -->
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
@@ -157,6 +155,9 @@
             swal("Good job!", "You clicked the button!", "success");
         }
     </script> --}}
+
+
+
 </body>
 
 </html>

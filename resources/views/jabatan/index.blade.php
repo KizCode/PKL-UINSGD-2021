@@ -32,7 +32,7 @@
                 @endif
                 @include('sweetalert::alert')
                 <div class="card">
-                    <div class="card-header m-0 font-weight-bold text-primary">Surat Perintah
+                    <div class="card-header m-0 font-weight-bold text-primary">Daftar Jabatan
                         {{-- @if (auth()->user()->level == 'User') --}}
                             <a href="{{ route('jabatan.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
                                 Data
@@ -51,7 +51,7 @@
                                 @foreach ($jab as $data)
                                     <tbody>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->jabatan }}</td>
+                                        <td>{{ $data->name }}</td>
                                         <td>
                                             <form action="{{ route('jabatan.destroy', $data->id) }}" method="post">
                                                 @method('delete')

@@ -31,12 +31,12 @@
                 <div class="card mb-4">
                     <div class="card-header mb-0 m-0 font-weight-bold text-primary">
                         <span>Laporan Lembur</span>
-                        {{-- @if (auth()->user()->level == 'User') --}}
+                        @if (auth()->user()->level == 'User')
                             <a href="{{ route('lembur.create') }}" class="btn btn-sm btn-primary"
                                 style="float: right;">Tambah
                                 Data
                             </a>
-                        {{-- @endif --}}
+                        @endif
                     </div>
                     @php $no = 1; @endphp
                     <div class="card-body">

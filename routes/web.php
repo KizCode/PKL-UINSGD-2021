@@ -5,6 +5,8 @@ use App\Http\Controllers\GolController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\LemburController;
+use App\Http\Controllers\PekerjaanController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UpdatePasswordController;
 use App\Http\Controllers\UserController;
 use App\Models\Lembur;
@@ -32,16 +34,19 @@ Route::get('/', [App\Http\Controllers\LemburController::class, 'index'])->name('
 // Route::post('/register', [AuthController::class, 'store'])->name('store');
 // Route::get('/register', [AuthController::class, 'register'])->name('register');
 
+
 Route::group(['middleware' => ['auth', 'userlevel:Admin,User']], function () {
     Route::resource('lembur', LemburController::class);
     Route::resource('goals', GolController::class);
-    Route::resource('jabatan', JabatanController::class);
+    Route::resource('pekerjaan', PekerjaanController::class);
+    Route::resource('profile',ProfilController::class);
 
 });
 
 Route::group(['middleware' => ['auth', 'userlevel:Admin']], function () {
     Alert::alert('Welcome', 'UIN PTIPD', 'success');
     Route::resource('user', UserController::class);
+    Route::resource('jabatan', JabatanController::class);
 
 });
 

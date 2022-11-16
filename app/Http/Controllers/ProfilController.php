@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jabatan;
+use App\Models\Lembur;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class JabatanController extends Controller
+class ProfilController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,11 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        $jab = Jabatan::all();
-        return view('jabatan.index', ['jab' => $jab]);
+        //
+        $user = User::with('jabatan', 'golongan')->paginate(10);
+        $lemburs = Lembur::all('id')->count();
+        $juser = User::all('id')->count();
+        return view('profile.index', ['user' => $user], compact('juser', 'lemburs'));
 
     }
 
@@ -31,7 +31,6 @@ class JabatanController extends Controller
     public function create()
     {
         //
-        return view('jabatan.create');
     }
 
     /**
@@ -42,19 +41,7 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-
-        ]);
-
-        $jab = new Jabatan();
-        $jab->name = $request->name;
-
-        $jab->save();
-
-        return redirect()->route('jabatan.index')
-            ->with('success', 'Data berhasil dihapus!');
-
+        //
     }
 
     /**
@@ -66,9 +53,6 @@ class JabatanController extends Controller
     public function show($id)
     {
         //
-        $jab = Jabatan::findOrFail($id);
-        return view('jabatan.show', compact('jab'));
-
     }
 
     /**
@@ -80,9 +64,6 @@ class JabatanController extends Controller
     public function edit($id)
     {
         //
-        $jab = Jabatan::findOrFail($id);
-        return view('jabatan.edit', compact('jab'));
-
     }
 
     /**
@@ -95,19 +76,6 @@ class JabatanController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'name' => 'required',
-
-        ]);
-
-        $jab = Jabatan::findOrFail($id);
-        $jab->name = $request->name;
-
-        $jab->save();
-
-        return redirect()->route('jabatan.index')
-            ->with('success', 'Data berhasil diedit!');
-
     }
 
     /**
@@ -119,10 +87,5 @@ class JabatanController extends Controller
     public function destroy($id)
     {
         //
-        $jab = Jabatan::findOrFail($id);
-        $jab->delete();
-        return redirect()->route('jabatan.index')
-            ->with('success', 'Data berhasil dihapus!');
-
     }
 }

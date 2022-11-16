@@ -1,5 +1,20 @@
 @extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            /* margin: 0; */
+        }
+    </style>
+</head>
 @section('content')
     <div class="container-fluid">
 
@@ -11,13 +26,24 @@
                     </div>
                     @include('layouts/_flash')
                     <div class="card-body p-4">
-                        <form class="row g-2" action="{{ route('register') }}" method="post">
+                        <form class="row g-2" action="{{ route('user.store') }}" method="POST">
                             @csrf
                             <div class="mb-3 col-sm-6">
+                                <label class="form-label">NIP</label>
+                                <input type="number" class="form-control @error('nip') is-invalid @enderror" width="100%"
+                                    name="nip" id="nip" value="{{ old('nip') }}" required>
+                                @error('nip')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-sm-6">
                                 <label class="form-label">Nama</label>
-                                <input type="text" class="form-control" width="100%" name="name" id="name"
-                                    @error('tl') is-invalid @enderror name="tl" id="tl" required>
-                                @error('email')
+                                <input type="text" class="form-control @error('nip') is-invalid @enderror" width="100%"
+                                    name="name" id="name" @error('name') is-invalid @enderror
+                                    value="{{ old('name') }}" required>
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -26,8 +52,25 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label">Tanggal Lahir</label>
                                 <input type="date" class="form-control  @error('tl') is-invalid @enderror" name="tl"
-                                    id="tl">
+                                    id="tl" value="{{ old('tl') }}">
                                 @error('tl')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Golongan</label>
+                                <select class="form-select @error('golongan') is-invalid @enderror" name="golongan"
+                                    id="golongan" required>
+                                    <option selected disabled>
+                                        Pilih Golongan</option>
+                                    @foreach ($gol as $data)
+                                        <option value="{{ $data->id }}">{{ $data->gol }} -
+                                            {{ $data->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('golongan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -35,15 +78,15 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label">Jabatan</label>
-                                <select class="form-select" name="jabatan_id" id="jabtan_id"
-                                    @error('email') is-invalid @enderror required>
-                                    <option value="{{ Auth::user()->jabatan->id }}" disabled>
-                                        {{ Auth::user()->jabatan->jabatan }}</option>
+                                <select class="form-select @error('jabatan') is-invalid @enderror" name="jabatan"
+                                    id="jabatan" required>
+                                    <option selected disabled>
+                                        Pilih Jabatan</option>
                                     @foreach ($jab as $data)
-                                        <option value="{{ $data->id }}" default>{{ $data->jabatan }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('email')
+                                @error('jabatan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -51,8 +94,10 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label class="form-label">Level</label>
-                                <select name="level" id="level" class="form-select"
-                                    @error('level') is-invalid @enderror name="level" id="level">
+                                <select name="level" id="level"
+                                    class="form-select @error('level') is-invalid @enderror" name="level" id="level">
+                                    <option selected disabled>
+                                        Pilih User Level</option>
                                     <option value="User" default>User</option>
                                     <option value="Admin">Admin</option>
                                 </select>
@@ -63,9 +108,13 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-12">
+                                <label for="formFile" class="form-label">Foto</label>
+                                <input class="form-control" type="file" name="foto">
+                            </div>
+                            <div class="mb-3 col-12">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control  @error('email') is-invalid @enderror"
-                                    name="email" id="email" required>
+                                    name="email" id="email" value="{{ old('email') }}" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -73,7 +122,6 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
-
                                 <div class="col-md-12">
                                     <label class="form-label">Password</label>
                                     <input id="password" type="password"
@@ -82,7 +130,6 @@
                                     <div id="passwordHelpBlock" class="form-text">
                                         Must be 8-20 characters long.
                                     </div>
-
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -92,7 +139,9 @@
                             </div>
                             <div class="mb-3 col-12">
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="submit" id="simpan">Save</button>
+                                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4"
+                                        id="tombol">Register
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -102,3 +151,5 @@
         </div>
     </div>
 @endsection
+
+</html>

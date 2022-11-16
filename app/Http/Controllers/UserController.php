@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Golongan;
 use App\Models\Jabatan;
 use App\Models\Lembur;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -37,8 +39,9 @@ class UserController extends Controller
     public function create()
     {
         $jab = Jabatan::all();
+        $gol = Golongan::all();
         $use = User::with('jabatan');
-        return view('user.create', compact('jab', 'use'));
+        return view('user.create', compact('jab', 'use', 'gol'));
     }
 
     /**
@@ -49,34 +52,50 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nip' => 'required|max:20',
-            'name' => 'required|max:50',
-            'foto' => 'required',
+        // ddd($request);
+        $validatedData = $request->validate([
+            'nip' => ['required','min:8','unique:users'],
+            'name' => ['required','max:255'],
+            'foto' => ['nullable','file','image','max:4080'],
+            'jabatan' => ['required'],
+            'golongan' => ['required'],
             'level' => 'required',
-            'email' => 'required',
+            'email' => ['required','unique:users','email'],
             'password' => 'required',
+
         ]);
 
-        Hash::make('password');
+        // if ($request->hasfile('foto')) {
+        //     $path = $request->file('foto')->store('images');
+        // } else {
+        //     $path = '';
+        // }
 
-        $user = new User();
-        $user->nip = $request->nip;
-        $user->name = $request->name;
-        $user->level = $request->level;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        if ($request->hasFile('foto')) {
-            $user->deleteImage();
-            $image = $request->file('foto');
-            $name = rand('1000', '9999') . $image->getClientOriginalName();
-            $image->move('images/user/', $name);
-            $user->foto = $name;
-        }
+        // $validatedData['foto'] = $path;
+        $validatedData['jabatan_id'] = $request->jabatan;
+        $validatedData['golongan_id'] = $request->golongan;
+        $validatedData['password'] = Hash::make('password');
 
-        $user->save();
+        // $user = new User();
+        // $user->nip = $request->nip;
+        // $user->name = $request->name;
+        // $user->jabatan_id = $request->jabatan;
+        // $user->golongan_id = $request->golongan;
+        // $user->level = $request->level;
+        // $user->email = $request->email;
+        // $user->password = Hash::make($request->password);
+        // if ($request->hasFile('foto')) {
+        //     $user->deleteImage();
+        //     $image = $request->file('foto');
+        //     $name = rand('1000', '9999') . $image->getClientOriginalName();
+        //     $image->move('images/user/', $name);
+        //     $user->foto = $name;
+        // }
+
+        User::create($validatedData);
+        Alert::success('Success Title', 'Success Message');
         return redirect()
-            ->route('user.index')->with('toast_success', 'Data berhasil dibuat!');
+            ->route('user.index')->toast('Your Post as been submited!', 'success');
 
     }
 
@@ -121,9 +140,9 @@ class UserController extends Controller
         $validated = $request->validate([
             'nip' => 'required|max:20',
             'name' => 'required|max:50',
-            'level' => 'required',
+            'level' => ['nullable'],
             'email' => 'required',
-            'password' => 'nullable',
+            'password' => ['required'],
         ]);
 
         $user = User::findOrFail($id);

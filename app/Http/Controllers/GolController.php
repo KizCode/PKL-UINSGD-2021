@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gol;
 use App\Models\Jabatan;
 use App\Models\Lembur;
+use App\Models\Pekerjaan;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -29,9 +30,9 @@ class GolController extends Controller
 
     public function create()
     {
-        $lem = Lembur::all();
+        $peker = Pekerjaan::all();
         $gol = Gol::with('lembur');
-        return view('goals.create',compact('lem','gol'));
+        return view('goals.create',compact('peker','gol'));
     }
 
     public function store(Request $request)

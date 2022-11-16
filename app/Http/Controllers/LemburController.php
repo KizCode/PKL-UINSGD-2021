@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lembur;
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +34,7 @@ class LemburController extends Controller
     {
         Validator::make($request->all(), [
 
-            'tgl' => 'required|date',
+            'tgl' => ['required','date'],
             'dari' => 'required',
             'sampai' => 'required',
             'kgtn' => 'required',

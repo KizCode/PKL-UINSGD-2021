@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'nip',
         'name',
+        'foto',
         'jabatan_id',
         'golongan_id',
         'level',
@@ -33,18 +34,18 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function image()
-    {
-        if($this->foto && file_exists(public_path('images/user/'.$this->foto))){
-            return asset('images/user/'.$this->foto);
-        }
-    }
-    public function deleteImage()
-    {
-        if($this->foto && file_exists(public_path('images/user/'.$this->foto))){
-            return unlink(public_path('images/user/'.$this->foto));
-        }
-    }
+    // public function image()
+    // {
+    //     if($this->foto && file_exists(public_path('images/user/'.$this->foto))){
+    //         return asset('images/user/'.$this->foto);
+    //     }
+    // }
+    // public function deleteImage()
+    // {
+    //     if($this->foto && file_exists(public_path('images/user/'.$this->foto))){
+    //         return unlink(public_path('images/user/'.$this->foto));
+    //     }
+    // }
 
     public function jabatan()
     {

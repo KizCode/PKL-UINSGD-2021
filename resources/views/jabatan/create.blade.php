@@ -12,8 +12,8 @@
                             @csrf
                             <div class="mb-3 col-12" style="float">
                                 <label for="">Jabatan Baru</label>
-                                <input class="form-control" type="text" name="jabatan" required>
-                                @error('jabatan')
+                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" required>
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

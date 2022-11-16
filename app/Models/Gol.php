@@ -12,7 +12,8 @@ class Gol extends Model
     protected $filllable = [
         'jepe',
         'user_id',
-        'lembur_id'
+        'lembur_id',
+        'pekerjaan_id'
     ];
 
     public function user()
@@ -25,6 +26,10 @@ class Gol extends Model
     {
         return $this->belongsTo(Lembur::class, 'lembur_id');
 
+    }
+    public function pekerjaan()
+    {
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan_id');
     }
 
 

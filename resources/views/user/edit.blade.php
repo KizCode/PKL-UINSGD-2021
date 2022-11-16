@@ -17,7 +17,7 @@
                                 <input type="text" class="form-control  @error('name') is-invalid @enderror"
                                     name="name" value="{{ $user->name }}">
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert" required>
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -25,7 +25,7 @@
                             <div class="mb-3 col-6" style="float: right">
                                 <label class="form-label" for="nip">NIP</label>
                                 <input type="text" class="form-control  @error('nip') is-invalid @enderror"
-                                    name="nip" value="{{ $user->nip }}">
+                                    name="nip" value="{{ $user->nip }}" required>
                                 @error('nip')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label" for="level">Level</label>
                                 <select name="level" id=""
-                                    class="form-select  @error('level') is-invalid @enderror">
+                                    class="form-select  @error('level') is-invalid @enderror" required>
                                     <option value="User" default>User</option>
                                     <option value="Dosen">Dosen</option>
                                 </select>
@@ -63,7 +63,7 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label" for="email">Email</label>
                                 <input type="text" class="form-control  @error('email') is-invalid @enderror"
-                                    name="email" value="{{ $user->email }}">
+                                    name="email" value="{{ $user->email }}" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -73,8 +73,8 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label" for="name">Password</label>
                                 <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $user->password }}"
-                                    autocomplete="new-password" placeholder="Password">
+                                    class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"
+                                    autocomplete="new-password" placeholder="Password" required>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

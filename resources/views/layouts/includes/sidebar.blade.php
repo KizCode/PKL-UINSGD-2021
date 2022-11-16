@@ -19,7 +19,7 @@
 
     <!-- Nav Item - Dashboard -->
     @if (auth()->user()->level == 'Admin')
-        <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -27,13 +27,31 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                @if(auth()->user()->level == 'Admin')
                 <h6 class="collapse-header">Menu Admin</h6>
                 <a class="collapse-item" href="{{ route('user.index') }}">Data User</a>
                 <a class="collapse-item" href="{{ route('jabatan.index') }}">Data Jabatan</a>
+                @else
+                <h6 class="collapse-header">Menu User</h6>
+                <a class="collapse-item" href="{{ route('pekerjaan.index') }}">Data Pekerjaan</a>
+                @endif
             </div>
         </div>
     </li>
     @endif
+
+
+
+
+    @if (auth()->user()->level == 'Admin')
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
+    </div>
+
     <li class="nav-item">
         <a class="nav-link" href="{{ route('lembur.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="auto" fill="currentColor"
@@ -58,16 +76,6 @@
             <span>Perintah Lembur</span>
         </a>
     </li>
-
-
-    @if (auth()->user()->level == 'Admin')
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     {{-- <li class="nav-item">

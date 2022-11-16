@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jabatan;
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
-class JabatanController extends Controller
+class PekerjaanController extends Controller
 {
     public function __construct()
     {
@@ -18,8 +19,8 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        $jab = Jabatan::all();
-        return view('jabatan.index', ['jab' => $jab]);
+        $peker = Pekerjaan::all();
+        return view('pekerjaan.index', ['peker' => $peker]);
 
     }
 
@@ -31,7 +32,7 @@ class JabatanController extends Controller
     public function create()
     {
         //
-        return view('jabatan.create');
+        return view('pekerjaan.create');
     }
 
     /**
@@ -42,17 +43,19 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-
+        $validatedData = $request->validate([
+            'name' => ['required','min:3'],
+            'des' => ['required','min:5'],
         ]);
 
-        $jab = new Jabatan();
-        $jab->name = $request->name;
+        $peker = new Pekerjaan();
 
-        $jab->save();
+        $peker->name = $request->name;
+        $peker->des = $request->des;
 
-        return redirect()->route('jabatan.index')
+        $peker->save();
+
+        return redirect()->route('pekerjaan.index')
             ->with('success', 'Data berhasil dihapus!');
 
     }
@@ -66,8 +69,8 @@ class JabatanController extends Controller
     public function show($id)
     {
         //
-        $jab = Jabatan::findOrFail($id);
-        return view('jabatan.show', compact('jab'));
+        $peker = Pekerjaan::findOrFail($id);
+        return view('pekerjaan.show', compact('peker'));
 
     }
 
@@ -80,8 +83,8 @@ class JabatanController extends Controller
     public function edit($id)
     {
         //
-        $jab = Jabatan::findOrFail($id);
-        return view('jabatan.edit', compact('jab'));
+        $peker = Pekerjaan::findOrFail($id);
+        return view('pekerjaan.edit', compact('peker'));
 
     }
 
@@ -96,16 +99,16 @@ class JabatanController extends Controller
     {
         //
         $request->validate([
-            'name' => 'required',
-
+            'judul' => ['required'],
+            'peker' => ['required','min:5'],
         ]);
 
-        $jab = Jabatan::findOrFail($id);
-        $jab->name = $request->name;
+        $peker = Pekerjaan::findOrFail($id);
+        $peker->name = $request->name;
 
-        $jab->save();
+        $peker->save();
 
-        return redirect()->route('jabatan.index')
+        return redirect()->route('pekerjaan.index')
             ->with('success', 'Data berhasil diedit!');
 
     }
@@ -119,9 +122,9 @@ class JabatanController extends Controller
     public function destroy($id)
     {
         //
-        $jab = Jabatan::findOrFail($id);
-        $jab->delete();
-        return redirect()->route('jabatan.index')
+        $peker = Pekerjaan::findOrFail($id);
+        $peker->delete();
+        return redirect()->route('pekerjaan.index')
             ->with('success', 'Data berhasil dihapus!');
 
     }
