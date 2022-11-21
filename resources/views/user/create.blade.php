@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-<!DOCTYPE html>
+@extends('layouts.app')
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,31 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            /* margin: 0; */
-        }
-    </style>
-</head>
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                /* margin: 0; */
+            }
+        </style>
+    </head> --}}
 @section('content')
     <div class="container-fluid">
-
+        @include('layouts._flash')
         <div class="row justify-content-center">
             <div class="col-md-8" width="100%">
                 <div class="card" width="100%">
+                    @include('layouts._flash')
                     <div class="card-header">
                         Data User
                     </div>
-                    @include('layouts/_flash')
                     <div class="card-body p-4">
-                        <form class="row g-2" action="{{ route('user.store') }}" method="POST">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form class="row g-2" action="{{ route('user.store') }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3 col-sm-6">
                                 <label class="form-label">NIP</label>
-                                <input type="number" class="form-control @error('nip') is-invalid @enderror" width="100%"
-                                    name="nip" id="nip" value="{{ old('nip') }}" required>
+                                <input type="number" name="nip"
+                                    class="form-control @error('nip', 'users') is-invalid @enderror">
                                 @error('nip')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -41,8 +56,7 @@
                             <div class="mb-3 col-sm-6">
                                 <label class="form-label">Nama</label>
                                 <input type="text" class="form-control @error('nip') is-invalid @enderror" width="100%"
-                                    name="name" id="name" @error('name') is-invalid @enderror
-                                    value="{{ old('name') }}" required>
+                                    name="name" id="name" value="{{ old('name') }}">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -62,7 +76,7 @@
                             <div class="col-md-6">
                                 <label class="form-label">Golongan</label>
                                 <select class="form-select @error('golongan') is-invalid @enderror" name="golongan"
-                                    id="golongan" required>
+                                    id="golongan">
                                     <option selected disabled>
                                         Pilih Golongan</option>
                                     @foreach ($gol as $data)
@@ -79,7 +93,7 @@
                             <div class="mb-3 col-6">
                                 <label class="form-label">Jabatan</label>
                                 <select class="form-select @error('jabatan') is-invalid @enderror" name="jabatan"
-                                    id="jabatan" required>
+                                    id="jabatan">
                                     <option selected disabled>
                                         Pilih Jabatan</option>
                                     @foreach ($jab as $data)
@@ -109,12 +123,12 @@
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="formFile" class="form-label">Foto</label>
-                                <input class="form-control" type="file" name="foto">
+                                <input class="form-control" type="file" id="image" name="image">
                             </div>
                             <div class="mb-3 col-12">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control  @error('email') is-invalid @enderror"
-                                    name="email" id="email" value="{{ old('email') }}" required>
+                                    name="email" id="email" value="{{ old('email') }}">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -126,7 +140,7 @@
                                     <label class="form-label">Password</label>
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password" placeholder="Password">
+                                        autocomplete="new-password" placeholder="Password">
                                     <div id="passwordHelpBlock" class="form-text">
                                         Must be 8-20 characters long.
                                     </div>
@@ -139,8 +153,7 @@
                             </div>
                             <div class="mb-3 col-12">
                                 <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4"
-                                        id="tombol">Register
+                                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4" id="tombol">Register
                                     </button>
                                 </div>
                             </div>

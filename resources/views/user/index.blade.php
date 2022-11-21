@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 <!DOCTYPE html>
 
 <head>
@@ -98,6 +98,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-16">
+                @include('layouts/_flash')
                 @if (session('success'))
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Holy guacamole!</strong> You should check in on some of those fields below.
@@ -105,6 +106,13 @@
                     </div>
                 @endif
                 @include('sweetalert::alert')
+
+                @if (Session::has('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ $message }} Kasdjadhahdsk
+                    </div>
+                @endif
+
 
                 @php $no = 1; @endphp
                 <div class="card mb-4">
@@ -122,6 +130,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Foto</th>
                                         <th>NIP</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
@@ -135,6 +144,7 @@
                                     <tbody>
                                         <tr>
                                             <td>{{ $no++ }}</td>
+                                            <td><img src="{{ asset('storage/image/'.$data->image) }}" alt="" width="50"></td>
                                             <td>{{ $data->nip }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->jabatan->name }}</td>

@@ -6,12 +6,16 @@ use App\Models\Golongan;
 use App\Models\Jabatan;
 use App\Models\Lembur;
 use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Validation\Concerns\ValidatesAttributes;
+
+use function GuzzleHttp\Promise\all;
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
 
@@ -54,48 +58,43 @@ class UserController extends Controller
     {
         // ddd($request);
         $validatedData = $request->validate([
-            'nip' => ['required','min:8','unique:users'],
-            'name' => ['required','max:255'],
-            'foto' => ['nullable','file','image','max:4080'],
+            'nip' => ['required', 'min:8', 'unique:users'],
+            'name' => ['required', 'max:255'],
+            'image' => ['nullable', 'file', 'image', 'max:4080'],
             'jabatan' => ['required'],
             'golongan' => ['required'],
             'level' => 'required',
-            'email' => ['required','unique:users','email'],
+            'email' => ['required', 'unique:users', 'email'],
             'password' => 'required',
 
         ]);
 
-        // if ($request->hasfile('foto')) {
-        //     $path = $request->file('foto')->store('images');
-        // } else {
-        //     $path = '';
-        // }
+        $newName = '';
 
-        // $validatedData['foto'] = $path;
+        if ($request->file('image')) {
+            $extendsion = $request->file('image')->getClientOriginalName();
+            $newName = $request->name . '@' . now()->timestamp . '.' . $extendsion;
+            $request->file('image')->storeAs('image', $newName);
+        }
+
+        $validatedData['image'] = $newName;
         $validatedData['jabatan_id'] = $request->jabatan;
         $validatedData['golongan_id'] = $request->golongan;
         $validatedData['password'] = Hash::make('password');
 
-        // $user = new User();
-        // $user->nip = $request->nip;
-        // $user->name = $request->name;
-        // $user->jabatan_id = $request->jabatan;
-        // $user->golongan_id = $request->golongan;
-        // $user->level = $request->level;
-        // $user->email = $request->email;
-        // $user->password = Hash::make($request->password);
-        // if ($request->hasFile('foto')) {
-        //     $user->deleteImage();
-        //     $image = $request->file('foto');
-        //     $name = rand('1000', '9999') . $image->getClientOriginalName();
-        //     $image->move('images/user/', $name);
-        //     $user->foto = $name;
-        // }
+        $user = new User();
+        $user->nip = $validatedData['nip'];
+        $user->name = $validatedData['name'];
+        $user->image = $validatedData['image'];
+        $user->jabatan_id = $validatedData['jabatan_id'];
+        $user->golongan_id = $validatedData['golongan_id'];
+        $user->level = $validatedData['level'];
+        $user->email = $validatedData['email'];
+        $user->password = $validatedData['password'];
+        $user->save();
 
-        User::create($validatedData);
-        Alert::success('Success Title', 'Success Message');
         return redirect()
-            ->route('user.index')->toast('Your Post as been submited!', 'success');
+            ->route('user.index')->with('success', 'Data berhasil dibuat!');
 
     }
 
@@ -151,13 +150,13 @@ class UserController extends Controller
         $user->level = $request->level;
         $user->email = $request->email;
         $user->password = $request->password;
-        if ($request->hasFile('foto')) {
-            $user->deleteImage();
-            $image = $request->file('foto');
-            $name = rand('1000', '9999') . $image->getClientOriginalName();
-            $image->move('images/user/', $name);
-            $user->foto = $name;
-        }
+        // if ($request->hasFile('foto')) {
+        //     $user->deleteImage();
+        //     $image = $request->file('foto');
+        //     $name = rand('1000', '9999') . $image->getClientOriginalName();
+        //     $image->move('images/user/', $name);
+        //     $user->foto = $name;
+        // }
 
         $user->save();
         return redirect()

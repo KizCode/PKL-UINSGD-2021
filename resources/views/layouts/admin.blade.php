@@ -34,7 +34,6 @@
         <!-- Sidebar -->
         @include('layouts.includes.sidebar')
         <!-- End of Sidebar -->
-        @include('layouts._flash')
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -46,6 +45,7 @@
             <div id="content">
 
                 <!-- Topbar -->
+                @include('layouts._flash')
                 @include('layouts.includes.navbar')
                 <!-- End of Topbar -->
 
@@ -135,6 +135,7 @@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
+
 
     <!-- Area Demo -->
     {{-- <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
