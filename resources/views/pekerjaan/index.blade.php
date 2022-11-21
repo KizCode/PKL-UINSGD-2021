@@ -33,16 +33,16 @@
                 @include('sweetalert::alert')
                 <div class="card">
                     <div class="card-header m-0 font-weight-bold text-primary">Daftar Pekerjaan
-                        {{-- @if (auth()->user()->level == 'User') --}}
-                            <a href="{{ route('pekerjaan.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
-                                Data
+                        @if (auth()->user()->level == 'User')
+                            <a href="{{ route('pekerjaan.create') }}" class="btn btn-sm btn-primary" style="float: right;">
+                                Tambah Data
                             </a>
-                        {{-- @endif --}}
+                        @endif
                     </div>
                     @php $no = 1; @endphp
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table  class="table table-md"  id="dataTable">
+                            <table class="table table-md" id="dataTable">
                                 <thead>
                                     <th>No</th>
                                     <th>Pekerjaan</th>
@@ -58,12 +58,10 @@
                                             <form action="{{ route('pekerjaan.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                {{-- @if (auth()->user()->level == 'User') --}}
-                                                    <a href="{{ route('pekerjaan.edit', $data->id) }}"
-                                                        class="btn btn-outline-warning">
-                                                        <span class="text">Edit</span>
-                                                    </a> |
-                                                {{-- @endif --}}
+                                                <a href="{{ route('pekerjaan.edit', $data->id) }}"
+                                                    class="btn btn-outline-warning">
+                                                    <span class="text">Edit</span>
+                                                </a> |
                                                 <button type="submit" class="btn btn-outline-danger"
                                                     onclick="return confirm('Are You Sure?')">
                                                     <span class="text">Delete</span>
@@ -72,7 +70,6 @@
                                         </td>
                                     </tbody>
                                 @endforeach
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -81,5 +78,4 @@
 
         </div>
     </div>
-
 @endsection

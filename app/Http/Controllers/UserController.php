@@ -6,12 +6,9 @@ use App\Models\Golongan;
 use App\Models\Jabatan;
 use App\Models\Lembur;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Concerns\ValidatesAttributes;
-
-use function GuzzleHttp\Promise\all;
 
 class UserController extends Controller
 {
@@ -44,7 +41,7 @@ class UserController extends Controller
     {
         $jab = Jabatan::all();
         $gol = Golongan::all();
-        $use = User::with('jabatan');
+        $use = User::all();
         return view('user.create', compact('jab', 'use', 'gol'));
     }
 
@@ -58,14 +55,14 @@ class UserController extends Controller
     {
         // ddd($request);
         $validatedData = $request->validate([
-            'nip' => ['required', 'min:8', 'unique:users'],
+            'nip' => ['required', 'unique:users', 'min:8'],
             'name' => ['required', 'max:255'],
             'image' => ['nullable', 'file', 'image', 'max:4080'],
             'jabatan' => ['required'],
             'golongan' => ['required'],
-            'level' => 'required',
+            'level' => ['required'],
             'email' => ['required', 'unique:users', 'email'],
-            'password' => 'required',
+            'password' => ['required'],
 
         ]);
 
@@ -94,7 +91,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()
-            ->route('user.index')->with('success', 'Data berhasil dibuat!');
+            ->route('user.index')->with(['success' => 'Data berhasil dibuat!']);
 
     }
 

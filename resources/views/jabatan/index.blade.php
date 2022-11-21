@@ -30,19 +30,19 @@
                         {{ session('success_message') }}
                     </div>
                 @endif
-                @include('sweetalert::alert')
+                @include('layouts._flash')
                 <div class="card">
                     <div class="card-header m-0 font-weight-bold text-primary">Daftar Jabatan
                         {{-- @if (auth()->user()->level == 'User') --}}
-                            <a href="{{ route('jabatan.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
-                                Data
-                            </a>
+                        <a href="{{ route('jabatan.create') }}" class="btn btn-sm btn-primary" style="float: right;">Add
+                            Data
+                        </a>
                         {{-- @endif --}}
                     </div>
                     @php $no = 1; @endphp
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table  class="table table-md"  id="dataTable">
+                            <table class="table table-md" id="dataTable">
                                 <thead>
                                     <th>No</th>
                                     <th>Nama Jabatan</th>
@@ -56,12 +56,10 @@
                                             <form action="{{ route('jabatan.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                {{-- @if (auth()->user()->level == 'User') --}}
-                                                    <a href="{{ route('lembur.edit', $data->id) }}"
-                                                        class="btn btn-outline-warning">
-                                                        <span class="text">Edit</span>
-                                                    </a> |
-                                                {{-- @endif --}}
+                                                <a href="{{ route('jabatan.edit', $data->id) }}"
+                                                    class="btn btn-outline-warning">
+                                                    <span class="text">Edit</span>
+                                                </a> |
                                                 <button type="submit" class="btn btn-outline-danger"
                                                     onclick="return confirm('Are You Sure?')">
                                                     <span class="text">Delete</span>

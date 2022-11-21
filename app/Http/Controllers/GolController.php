@@ -22,7 +22,7 @@ class GolController extends Controller
 
         // memanggil data Wali bersama dengan data siswa
         // yang dibuat dari method 'siswa' di model 'Wali'
-        $gol = Gol::with('user','lembur')->paginate(10);
+        $gol = Gol::with('user','pekerjaan','lembur')->paginate(10);
         $gols = Gol::where('id')->count();
         return view('goals.index', ['gol' => $gol], compact('gols'));
 
@@ -39,18 +39,15 @@ class GolController extends Controller
     {
         $request->validate([
 
-            'jepe' => ['nullable'],
-            'lembur' => ['nullable']
+            'peker' => ['nullable'],
 
         ]);
 
         $gol = new Gol();
         $gol->user_id = Auth::user()->id;
-        if ($request->jepe == true){
-            $gol->jepe = $request->jepe;
-        } else {
-            $gol->lembur_id = $request->lembur;
-        }
+        $gol->pekerjaan_id = $request->peker;
+
+
 
         $gol->save();
         return redirect()->route('goals.index')
@@ -59,8 +56,9 @@ class GolController extends Controller
 
     public function show($id)
     {
+        $peker = Pekerjaan::all();
         $gol = Gol::findOrFail($id);
-        return view('goals.show', compact('gol'));
+        return view('goals.show', compact('gol', 'peker'));
     }
 
     public function edit($id)

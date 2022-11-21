@@ -43,7 +43,7 @@ class JabatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => ['required', 'unique:jabatans'],
 
         ]);
 

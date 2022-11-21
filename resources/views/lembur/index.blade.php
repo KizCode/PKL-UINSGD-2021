@@ -96,7 +96,7 @@
                                                     @endif
                                                     @if (auth()->user()->level == 'User')
                                                         <a href="{{ route('lembur.edit', $data->id) }}"
-                                                            class="btn btn-warning-warning ">
+                                                            class="btn btn-outline-warning ">
                                                             <span class="text">Edit</span>
                                                         </a> |
                                                     @endif

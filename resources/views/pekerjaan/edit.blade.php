@@ -17,24 +17,25 @@
                         </div>
                     @endif
                     <div class="card-body p-4">
-                        <form class="row g-2" action="{{ route('pekerjaan.store') }}" method="post">
+                        <form class="row g-2" action="{{ route('pekerjaan.update', $peker->id) }}" method="post">
+                            @method('put')
                             @csrf
-                            <div class="mb-3 col-12" style="float">
+                            <div class="mb-3 col-12" >
                                 <label for="">Judul</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name')
                                     is-invalid
-                                @enderror" required>
+                                @enderror" value="{{ $peker->name }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-12" style="float">
-                                <label for="">Pekerjaan Baru</label>
+                            <div class="mb-3 col-12" >
+                                <label for="">Pekerjaan</label>
                                 <textarea type="text" name="des" cols="30" rows="10"
-                                    class="form-control @error('des') is-invalid @enderror" required></textarea>
+                                    class="form-control @error('des') is-invalid @enderror" required>{{ $peker->des }}</textarea>
                                 @error('des')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

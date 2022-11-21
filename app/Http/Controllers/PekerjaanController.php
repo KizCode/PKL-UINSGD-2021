@@ -99,12 +99,14 @@ class PekerjaanController extends Controller
     {
         //
         $request->validate([
-            'judul' => ['required'],
-            'peker' => ['required','min:5'],
+            'name' => ['required'],
+            'des' => ['required','min:5'],
         ]);
 
         $peker = Pekerjaan::findOrFail($id);
         $peker->name = $request->name;
+        $peker->des = $request->des;
+
 
         $peker->save();
 

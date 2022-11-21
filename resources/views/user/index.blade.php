@@ -105,16 +105,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                @include('sweetalert::alert')
 
                 @if (Session::has('status'))
                     <div class="alert alert-success" role="alert">
-                        {{ $message }} Kasdjadhahdsk
+                        {{ $message }}
                     </div>
                 @endif
-
-
-                @php $no = 1; @endphp
                 <div class="card mb-4">
                     <div class="card-header mb-0 m-0 font-weight-bold text-primary">
                         <span>User Terdaftar</span>

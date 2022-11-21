@@ -71,6 +71,7 @@
 
 
                     <!-- Content Row -->
+                    @include('layouts._flash')
                     @yield('content')
                     <!-- Content Row -->
 
