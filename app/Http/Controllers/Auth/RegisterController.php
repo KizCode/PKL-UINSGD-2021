@@ -60,7 +60,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nip' => ['required', 'min:8'],
             'name' => ['required', 'min:3','max:255'],
-            'image' => ['nullable'],
+            // 'image' => ['nullable'],
             'jabatan' => ['required'],
             'golongan' => ['required'],
             'email' => ['required', 'email:dns', 'max:255', 'unique:users'],
@@ -80,7 +80,7 @@ class RegisterController extends Controller
         $user = User::create([
             'nip' => $data['nip'],
             'name' => $data['name'],
-            'image' => $data['image'],
+            // 'image' => $data['image'],
             'jabatan_id' => $data['jabatan'],
             'golongan_id' => $data['golongan'],
             'email' => $data['email'],

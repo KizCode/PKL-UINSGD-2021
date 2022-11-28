@@ -6,7 +6,6 @@ use App\Models\Golongan;
 use App\Models\Jabatan;
 use App\Models\Lembur;
 use App\Models\User;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -54,7 +53,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // ddd($request);
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'nip' => ['required', 'unique:users', 'min:8'],
             'name' => ['required', 'max:255'],
             'image' => ['nullable', 'file', 'image', 'max:4080'],
@@ -74,24 +73,23 @@ class UserController extends Controller
             $request->file('image')->storeAs('image', $newName);
         }
 
-        $validatedData['image'] = $newName;
+        $newName = $request->image;
         $validatedData['jabatan_id'] = $request->jabatan;
         $validatedData['golongan_id'] = $request->golongan;
-        $validatedData['password'] = Hash::make('password');
+        $validatedData['password'] = $request->password;
 
         $user = new User();
-        $user->nip = $validatedData['nip'];
-        $user->name = $validatedData['name'];
-        $user->image = $validatedData['image'];
+        $user->nip = $request->nip;
+        $user->name = $request->name;
+        $user->image = $newName;
         $user->jabatan_id = $validatedData['jabatan_id'];
         $user->golongan_id = $validatedData['golongan_id'];
-        $user->level = $validatedData['level'];
-        $user->email = $validatedData['email'];
-        $user->password = $validatedData['password'];
+        $user->level = $request->level;
+        $user->email = $request->email;
+        $user->password = Hash::make($validatedData['password']);
         $user->save();
 
-        return redirect()
-            ->route('user.index')->with(['success' => 'Data berhasil dibuat!']);
+        return redirect()->route('user.index')->with(['success' => 'Data berhasil dibuat!']);
 
     }
 
@@ -170,8 +168,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()
-            ->route('user.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('user.index')
+        ->with('success', 'Data berhasil dihapus!');
 
     }
 }

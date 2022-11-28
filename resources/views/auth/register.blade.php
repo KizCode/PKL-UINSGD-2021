@@ -75,7 +75,7 @@
                                                 <select class="form-select" name="jabatan" id="jabatan"
                                                     @error('jabatan') is-invalid @enderror required>
                                                     @foreach ($jab as $data)
-                                                        <option value="{{ $data->id }}">{{ $data->jabatan }}
+                                                        <option value="{{ $data->id }}">{{ $data->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>

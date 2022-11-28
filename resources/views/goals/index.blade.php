@@ -16,7 +16,7 @@
 </html>
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
+        <h1 class="h3 mb-0 text-gray-800">Surat Perintah Kerja</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
@@ -66,7 +66,7 @@
                                                         <span class="text">Print</span>
                                                     </a> |
                                                     @if (auth()->user()->level == 'User')
-                                                        <a href="{{ route('lembur.edit', $data->id) }}"
+                                                        <a href="{{ route('goals.edit', $data->id) }}"
                                                             class="btn btn-outline-warning btn-icon-split">
                                                             <span class="text">Edit</span>
                                                         </a> |
