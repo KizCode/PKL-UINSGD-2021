@@ -26,7 +26,7 @@ use RealRashid\SweetAlert\Facades\Alert;
  */
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/login', [AuthController::class, 'login'])->name('login');
 
